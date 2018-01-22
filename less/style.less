@@ -1,0 +1,55 @@
+/*!
+Theme Name: GulpTheme
+Theme URI: http://underscores.me/
+Author: Underscores.me
+Author URI: http://underscores.me/
+Description: Description
+Version: 1.0.0
+License: GNU General Public License v2 or later
+License URI: LICENSE
+Text Domain: gulptheme
+Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready
+
+
+/* CUSTOM */
+
+body{
+        .pdfViewer .page{
+   
+                
+                  div.comment-respond{
+                    background: transparent;
+                    position: absolute;
+                        z-index: 100;
+                     max-width: 300px;
+             
+                     h3.comment-reply-title{
+                      display: none;
+                     }
+                     p.logged-in-as{
+                      display: none;
+                     }
+                     textarea{
+                    
+                      background-color: transparent !important;
+                     }
+                }
+        
+            }
+
+          .comment_positioned{
+            color:black;
+            max-width: 300px;
+            font-size: 18px;
+            font-weight: 600;
+            position: absolute;
+            //z-index: 50;
+            display: none;
+            div{
+                display: block;
+            }
+          }
+
+}
+
+@import "header.less";
