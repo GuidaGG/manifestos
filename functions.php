@@ -120,6 +120,8 @@ function gulptheme_scripts() {
 
 	wp_enqueue_script("jquery");
 	wp_enqueue_style( 'gulptheme-style', get_stylesheet_uri() );
+	wp_enqueue_style( 'gulptheme-max', get_template_directory_uri() . '/css/nmax.css');	
+
 
 	wp_enqueue_script( 'gulptheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
@@ -171,3 +173,51 @@ function add_custom_comment_field( $comment_id ) {
 
 }
 add_action( 'comment_post', 'add_custom_comment_field' );
+
+
+if(function_exists("register_field_group"))
+{
+	register_field_group(array (
+		'id' => 'acf_manifesto',
+		'title' => 'Manifesto',
+		'fields' => array (
+			array (
+				'key' => 'field_5a64ebc1e005b',
+				'label' => 'PDF',
+				'name' => 'pdf',
+				'type' => 'file',
+				'required' => 1,
+				'save_format' => 'object',
+				'library' => 'uploadedTo',
+			),
+		),
+		'location' => array (
+			array (
+				array (
+					'param' => 'post_type',
+					'operator' => '==',
+					'value' => 'post',
+					'order_no' => 0,
+					'group_no' => 0,
+				),
+			),
+		),
+		'options' => array (
+			'position' => 'acf_after_title',
+			'layout' => 'default',
+			'hide_on_screen' => array (
+				0 => 'excerpt',
+				1 => 'custom_fields',
+				2 => 'discussion',
+				3 => 'revisions',
+				4 => 'slug',
+				5 => 'author',
+				6 => 'format',
+				7 => 'categories',
+				8 => 'tags',
+				9 => 'send-trackbacks',
+			),
+		),
+		'menu_order' => 0,
+	));
+}
