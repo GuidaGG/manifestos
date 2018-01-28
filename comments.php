@@ -25,7 +25,9 @@ if ( post_password_required() ) {
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
-		<input class="comment_position" value=""
+		<input class="comment_position" value="">
+		<input class="comment_page" value="">
+
 		<h2 class="comments-title">
 			<?php
 			$comment_count = get_comments_number();
@@ -60,14 +62,15 @@ if ( post_password_required() ) {
 						$positions = explode(",", $position[0]);
 
 					?>
-					<div class="comment_positioned" id="comment_<?php echo $comment->comment_ID;  ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px">
+
+					<div class="comment_positioned" id="comment_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px">
+					<a name="comment-<?php echo $comment->comment_ID;  ?>"></a>
 					<div class="comment_content"><?php echo $comment->comment_content ;?></div>
 					<div class="comment_footer"><?php echo $comment->comment_author;?>
 					<?php echo $comment->comment_date ;?></div>
 					
 					</div>
-					<scriop
-					 $(".comment-respond").prependTo('.canvasWrapper');
+					
    			<?php
 				endforeach;
 		?>

@@ -5697,7 +5697,7 @@ var PDFFindBar = function () {
         query: this.findField.value,
         caseSensitive: this.caseSensitive.checked,
         phraseSearch: true,
-        highlightAll: this.highlightAll.checked,
+        highlightAll: true,
         findPrevious: findPrev
       });
     }

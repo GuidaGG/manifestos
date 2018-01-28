@@ -163,9 +163,11 @@ add_action( 'comment_form_after_fields', 'additional_fields' );
 add_action( 'comment_form_logged_in_after', 'additional_fields' );
 function additional_fields($fields) {
 echo '<input type="hidden" id="new_post_data" name="new_post_data" value="THIS IS ALSO META">';
+
 }
 function add_custom_comment_field( $comment_id ) {
 
    add_comment_meta( $comment_id, 'position',$_POST['new_post_data'] );
+
 }
 add_action( 'comment_post', 'add_custom_comment_field' );

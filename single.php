@@ -349,16 +349,33 @@
 
     <script src="<?php echo get_template_directory_uri() ; ?>/viewer.js"></script>
     <script src="<?php echo get_template_directory_uri() ; ?>/jquery.js"></script>
+    <script src="<?php echo get_template_directory_uri() ; ?>/js/pdf-highlighter.min.js"></script>
+<script>
+ pdfHighlighter.initOnDOMContentLoaded({
+ highlighterUrl: '<?php echo get_template_directory_uri() ; ?>',
+ querySelector: 'input[type=search]'
+ });
+</script>
     <script>
     document.addEventListener('textlayerrendered', function (e) {
       if (e.detail.pageNumber === PDFViewerApplication.page) {
           console.log('hello');
 
- $(".comment_positioned").prependTo('.canvasWrapper');
- $(".comment_positioned").show();
-var canvas = document.getElementById("page1");
+
+var canvas = document.getElementById("page" + $('#pageNumber').val());
 var context = canvas.getContext("2d");
 
+$( ".comment_positioned" ).each(function( index ) {
+ 
+  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+
+
+});
+
+
+
+
+ $(".comment_positioned").show();
 function createImageOnCanvas(imageId) {
     //canvas.style.display = "block";
     //document.getElementById("images").style.overflowY = "hidden";
@@ -368,10 +385,12 @@ function createImageOnCanvas(imageId) {
 }
 
 function draw(e) {
+  canvas = document.getElementById("page" + $('#pageNumber').val());
+   context = canvas.getContext("2d");
     var pos = getMousePos(canvas, e);
     posx = pos.x;
     posy = pos.y;
-    console.log(posx + ',' + posy);
+
     context.fillStyle = "#000000";
     context.fillRect(posx-2, posy-2, 4, 4);
 }
@@ -379,13 +398,17 @@ window.addEventListener('mousemove', draw, false);
 window.addEventListener('dblclick', comment, false);
 
 function comment(e){
+  canvas = document.getElementById("page" + $('#pageNumber').val());
+   context = canvas.getContext("2d");
   var pos = getMousePos(canvas, e);
     posx = pos.x;
     posy = pos.y;
-    //alert("change");
-  $(".comment-respond").prependTo('.canvasWrapper');
+    //alert("change")
+ 
+  $(".comment-respond").prependTo($('.page[data-page-number="' + $('#pageNumber').val()+ '"]'));
   $(".comment-respond").css({top: posy, left: posx , position:'absolute', 'z-index':"100"});
-  $("#new_post_data").val(posx + ',' + posy)
+  $("#new_post_data").val(posx + ',' + posy + ',' + $('#pageNumber').val())
+
 }
 
 function getMousePos(canvas, evt) {
