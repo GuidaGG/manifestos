@@ -31,20 +31,3 @@ body .pdfViewer .page div.comment-respond textarea {
   background-color: white !important;
   resize: none;
 }
-body .comment_positioned {
-  color: white;
-  max-width: 300px;
-  font-size: 12px;
-  position: absolute;
-  display: none;
-  background-color: #0051ff;
-  padding: 12px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
-  cursor: pointer;
-}
-#respond{
-  background-color: #fffbe8;
-  border: 0px solid;
-  padding: 8px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
-}

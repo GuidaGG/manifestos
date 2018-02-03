@@ -18,12 +18,7 @@
 
        $file = get_field('pdf'); ?>
 
-<<<<<<< HEAD
-  <style type="text/css">
-    .highlight { background-color: yellow }
-  </style>
-=======
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
+
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
 
@@ -393,11 +388,15 @@ $( ".commentdot" ).each(function( index ) {
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
 });
 
-$(".comment_positioned").show();
-
-<<<<<<< HEAD
-
- $(".comment_positioned").show();
+// $(".commentdot").show();
+//
+//  $(".comment_positioned").show();
+$('.commentdot').click(function(){
+  var currentClass = $(this).data("class");
+$("div." + currentClass).addClass("hovered");
+  console.log($(this).children("div:first-child"));
+        $(this).find("div:first-child").hide();
+});
 
  window.addEventListener('mousemove', draw, false);
 window.addEventListener('dblclick', comment, false);
@@ -416,8 +415,6 @@ window.addEventListener('dblclick', comment, false);
 
 /* -------------------------------*/
 
-=======
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
 function createImageOnCanvas(imageId) {
     //canvas.style.display = "block";
     //document.getElementById("images").style.overflowY = "hidden";
@@ -427,16 +424,14 @@ function createImageOnCanvas(imageId) {
 }
 
 function draw(e) {
-<<<<<<< HEAD
-   canvas = document.getElementById("page" + $('#pageNumber').val());
-   context = canvas.getContext("2d");
-    var pos = getMousePos(canvas, e);
-    posx = pos.x;
-    posy = pos.y;
-
-    context.fillStyle = "#000000";
-    context.fillRect(posx-2, posy-2, 4, 4);
-=======
+   // canvas = document.getElementById("page" + $('#pageNumber').val());
+   // context = canvas.getContext("2d");
+   //  var pos = getMousePos(canvas, e);
+   //  posx = pos.x;
+   //  posy = pos.y;
+   //
+   //  context.fillStyle = "#000000";
+   //  context.fillRect(posx-2, posy-2, 4, 4);
   // canvas = document.getElementById("page" + $('#pageNumber').val());
   //  context = canvas.getContext("2d");
   //   var pos = getMousePos(canvas, e);
@@ -445,7 +440,6 @@ function draw(e) {
 
     // context.fillStyle = "#000000";
     // context.fillRect(posx-2, posy-2, 4, 4);
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
 }
 
 
