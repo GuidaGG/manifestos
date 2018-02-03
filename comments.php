@@ -65,7 +65,7 @@ if ( post_password_required() ) {
 					?>
 
 						<div class="commentdot c<?php echo $comment->comment_ID;  ?>" id="commentdot_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px">
-							<div class="comment_positioned c<?php echo $comment->comment_ID;  ?>" id="comment_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]+20; ?>px">
+							<div class="comment_positioned commentdot_<?php echo $comment->comment_ID;  ?>" id="comment_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]+20; ?>px">
 								<a name="comment-<?php echo $comment->comment_ID;  ?>"></a>
 								<div class="comment_content"><?php echo $comment->comment_content ;?></div>
 								<div class="comment_footer"><?php echo $comment->comment_author;?>, <?php echo $comment->comment_date ;?></div>

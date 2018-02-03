@@ -50,7 +50,7 @@
 
 
 
-
+<!--
         <div class="reiter_wrapper">
           <div class="reiter active">
             <p>RAW MANIDFESTO</p>
@@ -61,7 +61,7 @@
           <div class="reiter">
             <p>BLABLABLA</p>
           </div>
-        </div>
+        </div> -->
 
 
 
@@ -156,7 +156,7 @@
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
-                  <p>← SIDEBAR</p>
+                  <div class="arrow_left">←</div><p>SIDEBAR</p>
                 </button>
                 <button id="highlights" class="toolbarButton highlights hiddenMediumView">
                   <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
@@ -191,11 +191,14 @@
                 </button>
 
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
-                  <p>PRINT</p>
+                  <div class="square"></div><p>PRINT</p>
                 </button>
 
                 <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
-                  <p>DOWNLOAD</p>
+                  <div class="arrow_down">↓</div><p>DOWNLOAD</p>
+                </button>
+                <button id="about" class="toolbarButton about hiddenMediumView">
+                  <div class="about">?</div>
                 </button>
                 <a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
                   <span data-l10n-id="bookmark_label">Current View</span>
@@ -390,12 +393,18 @@ $( ".commentdot" ).each(function( index ) {
 
 // $(".commentdot").show();
 //
-//  $(".comment_positioned").show();
+ $(".comment_positioned").toggleClass('hidden');
+  $(".commentdot").toggleClass('hidden');
+
 $('.commentdot').click(function(){
-  var currentClass = $(this).data("class");
-$("div." + currentClass).addClass("hovered");
-  console.log($(this).children("div:first-child"));
-        $(this).find("div:first-child").hide();
+  var currentId = $(this).attr("id");
+  console.log(currentId);
+  $('.'+currentId).toggleClass('hidden');
+});
+
+$('#highlights').click(function(){
+  $('.commentdot').toggleClass('hidden');
+  $(this).find('.dot').toggleClass('fill');
 });
 
  window.addEventListener('mousemove', draw, false);

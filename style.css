@@ -30,4 +30,11 @@ body .pdfViewer .page div.comment-respond p.logged-in-as {
 body .pdfViewer .page div.comment-respond textarea {
   background-color: white !important;
   resize: none;
+  width: 100%;
+  outline: none;
+  z-index: 122;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
