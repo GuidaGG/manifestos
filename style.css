@@ -12,6 +12,9 @@ Tags: custom-background, custom-logo, custom-menu, featured-images, threaded-com
 
 
 /* CUSTOM */
+body {
+  background: white !important;
+}
 body .pdfViewer .page div.comment-respond {
   background: transparent;
   position: absolute;

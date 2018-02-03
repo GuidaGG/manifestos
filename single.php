@@ -18,7 +18,9 @@
 
        $file = get_field('pdf'); ?>
 
-
+  <style type="text/css">
+    .highlight { background-color: yellow }
+  </style>
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
 
@@ -339,24 +341,12 @@
 
     endwhile; // End of the loop.
     ?>
-  </body>
 
 
-<!-- LOAD SCRIPTS HERE -->
-
-  <script src="<?php echo get_template_directory_uri() ; ?>/build/pdf.js"></script>
 
 
-    <script src="<?php echo get_template_directory_uri() ; ?>/viewer.js"></script>
-    <script src="<?php echo get_template_directory_uri() ; ?>/jquery.js"></script>
-    <script src="<?php echo get_template_directory_uri() ; ?>/js/pdf-highlighter.min.js"></script>
-<script>
- pdfHighlighter.initOnDOMContentLoaded({
- highlighterUrl: '<?php echo get_template_directory_uri() ; ?>',
- querySelector: 'input[type=search]'
- });
-</script>
     <script>
+jQuery(document).ready(function($) {
     document.addEventListener('textlayerrendered', function (e) {
       if (e.detail.pageNumber === PDFViewerApplication.page) {
           console.log('hello');
@@ -376,6 +366,24 @@ $( ".comment_positioned" ).each(function( index ) {
 
 
  $(".comment_positioned").show();
+
+ window.addEventListener('mousemove', draw, false);
+window.addEventListener('dblclick', comment, false);
+
+/* GUIDA ADDED THIS - KEEP */
+    $('.textLayer').find('div').mouseup(function (e){
+      //  $(this).removeHighlight();
+        $(this).highlight(getSelectionText());
+        //getSelectionText()
+   })
+      $('.textLayer').mouseup(function (e){
+      //  $(this).removeHighlight();
+        $(this).highlight(getSelectionText());
+        //getSelectionText()
+   })
+
+/* -------------------------------*/
+
 function createImageOnCanvas(imageId) {
     //canvas.style.display = "block";
     //document.getElementById("images").style.overflowY = "hidden";
@@ -385,7 +393,7 @@ function createImageOnCanvas(imageId) {
 }
 
 function draw(e) {
-  canvas = document.getElementById("page" + $('#pageNumber').val());
+   canvas = document.getElementById("page" + $('#pageNumber').val());
    context = canvas.getContext("2d");
     var pos = getMousePos(canvas, e);
     posx = pos.x;
@@ -394,8 +402,7 @@ function draw(e) {
     context.fillStyle = "#000000";
     context.fillRect(posx-2, posy-2, 4, 4);
 }
-window.addEventListener('mousemove', draw, false);
-window.addEventListener('dblclick', comment, false);
+
 
 function comment(e){
   canvas = document.getElementById("page" + $('#pageNumber').val());
@@ -411,6 +418,21 @@ function comment(e){
 
 }
 
+/* GUIDA ADDED THIS - KEEP */
+function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+    } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+    }
+
+    return text;
+
+}
+
+/* -------------------------------*/
+
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
     return {
@@ -421,5 +443,10 @@ function getMousePos(canvas, evt) {
 
       }
     }, true);
+
+});
     </script>
-</html>
+
+<?php
+get_footer();
+?>
