@@ -1,1 +1,78 @@
+#scaleSelect{
+  display: none;
+}
 
+#viewFind, #numPages, #pageNumber, .splitToolbarButton.hiddenSmallView, #toolbarViewerMiddle, #secondaryToolbarToggle, #viewBookmark, #openFile, #presentationMode, #toolbarViewerMiddle, .verticalToolbarSeparator.hiddenSmallView{
+  display: none !important;
+}
+
+#viewer{
+  background-color: #ddd;
+}
+
+#viewerContainer{
+  background-color: #ddd;
+}
+
+.pdfViewer .page{
+  border: 0px;
+  border-image: none;
+}
+
+#loadingBar{
+  display: none;
+}
+
+#toolbarViewer{
+  background-color: #ddd;
+}
+
+#toolbarContainer{
+  box-shadow: 0px;
+}
+
+.reiter_wrapper{
+  width: 100%;
+  height: 24px;
+  position: relative;
+  background-color: #eee;
+}
+.reiter{
+  width: 120px;
+  height: 24px;
+  border-right: 1px solid #d0d0d0;
+  float: left;
+  position: relative;
+  cursor: pointer;
+}
+.reiter p{
+  padding: 4px 0px 4px 8px;
+}
+.reiter.active{
+  background-color: #ddd;
+}
+/* .tools_wrapper{
+  width: 100%;
+  height: 50px;
+  position: relative;
+  background-color: #eee;
+} */
+button{
+  margin: 8px 22px 8px 22px !important;
+}
+.pdfViewer .page:first-child{
+  /* top: 22px !important; */
+}
+textarea, input{
+  border: none;
+}
+input{
+
+}
+.commentdot{
+  background: #0051ff;
+  width: 18px;
+  height: 18px;
+  border-radius: 18px;
+  position: absolute;
+}

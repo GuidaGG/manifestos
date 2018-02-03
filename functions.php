@@ -120,7 +120,7 @@ function gulptheme_scripts() {
 
 	wp_enqueue_script("jquery");
 	wp_enqueue_style( 'gulptheme-style', get_stylesheet_uri() );
-	wp_enqueue_style( 'gulptheme-max', get_template_directory_uri() . '/css/nmax.css');	
+	wp_enqueue_style( 'gulptheme-max', get_template_directory_uri() . '/css/max.css');	
 
 
 	wp_enqueue_script( 'gulptheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
