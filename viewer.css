@@ -225,12 +225,12 @@
   direction: ltr;
   width: 816px;
   height: 1056px;
-  margin: 1px auto -8px auto;
+  margin: 24px auto 0px auto;
   position: relative;
   overflow: visible;
-  border: 9px solid transparent;
+  /* border: 9px solid transparent;
   background-clip: content-box;
-  border-image: url(images/shadow.png) 9 9 repeat;
+  border-image: url(images/shadow.png) 9 9 repeat; */
   background-color: white;
 }
 
@@ -302,8 +302,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background-color: #404040;
-  background-image: url(images/texture.png);
+  background-color: #ddd;
 }
 
 body,
@@ -525,16 +524,16 @@ html[dir='rtl'] #viewerContainer {
                     linear-gradient(hsla(0,0%,30%,.99), hsla(0,0%,25%,.95));
 }
 html[dir='ltr'] #toolbarSidebar {
-  box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25),
+  /* box-shadow: inset -1px 0 0 rgba(0, 0, 0, 0.25),
               inset 0 -1px 0 hsla(0,0%,100%,.05),
               0 1px 0 hsla(0,0%,0%,.15),
-              0 0 1px hsla(0,0%,0%,.1);
+              0 0 1px hsla(0,0%,0%,.1); */
 }
 html[dir='rtl'] #toolbarSidebar {
-  box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.25),
+  /* box-shadow: inset 1px 0 0 rgba(0, 0, 0, 0.25),
               inset 0 1px 0 hsla(0,0%,100%,.05),
               0 1px 0 hsla(0,0%,0%,.15),
-              0 0 1px hsla(0,0%,0%,.1);
+              0 0 1px hsla(0,0%,0%,.1); */
 }
 
 #toolbarContainer, .findbar, .secondaryToolbar {
@@ -545,18 +544,18 @@ html[dir='rtl'] #toolbarSidebar {
                     linear-gradient(hsla(0,0%,32%,.99), hsla(0,0%,27%,.95));
 }
 html[dir='ltr'] #toolbarContainer, .findbar, .secondaryToolbar {
-  box-shadow: inset 1px 0 0 hsla(0,0%,100%,.08),
+  /* box-shadow: inset 1px 0 0 hsla(0,0%,100%,.08),
               inset 0 1px 1px hsla(0,0%,0%,.15),
               inset 0 -1px 0 hsla(0,0%,100%,.05),
               0 1px 0 hsla(0,0%,0%,.15),
-              0 1px 1px hsla(0,0%,0%,.1);
+              0 1px 1px hsla(0,0%,0%,.1); */
 }
 html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
-  box-shadow: inset -1px 0 0 hsla(0,0%,100%,.08),
+  /* box-shadow: inset -1px 0 0 hsla(0,0%,100%,.08),
               inset 0 1px 1px hsla(0,0%,0%,.15),
               inset 0 -1px 0 hsla(0,0%,100%,.05),
               0 1px 0 hsla(0,0%,0%,.15),
-              0 1px 1px hsla(0,0%,0%,.1);
+              0 1px 1px hsla(0,0%,0%,.1); */
 }
 
 #toolbarViewer {
@@ -702,7 +701,7 @@ html[dir='rtl'] .secondaryToolbar {
 .doorHangerRight {
   border: 1px solid hsla(0,0%,0%,.5);
   border-radius: 2px;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  /* box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3); */
 }
 .doorHanger:after, .doorHanger:before,
 .doorHangerRight:after, .doorHangerRight:before {
@@ -819,8 +818,8 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton {
 .overlayButton {
   border: 0 none;
   background: none;
-  width: 32px;
-  height: 25px;
+  /* width: 32px;
+  height: 25px; */
 }
 
 .toolbarButton > span {
@@ -849,9 +848,9 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton {
   background-clip: padding-box;
   border: 1px solid hsla(0,0%,0%,.35);
   border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+  /* box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
               0 0 1px hsla(0,0%,100%,.15) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+              0 1px 0 hsla(0,0%,100%,.05); */
   -webkit-transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
@@ -868,9 +867,9 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton {
 .toolbarButton.textButton:hover,
 .toolbarButton.textButton:focus {
   background-color: hsla(0,0%,0%,.2);
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+  /* box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
               0 0 1px hsla(0,0%,100%,.15) inset,
-              0 0 1px hsla(0,0%,0%,.05);
+              0 0 1px hsla(0,0%,0%,.05); */
   z-index: 199;
 }
 .splitToolbarButton > .toolbarButton {
@@ -899,7 +898,7 @@ html[dir='rtl'] .splitToolbarButton > .toolbarButton:first-child {
   width: 1px;
   background-color: hsla(0,0%,0%,.5);
   z-index: 99;
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  /* box-shadow: 0 0 0 1px hsla(0,0%,100%,.08); */
   display: inline-block;
   margin: 5px 0;
 }
@@ -913,7 +912,7 @@ html[dir='rtl'] .splitToolbarButtonSeparator {
 .splitToolbarButton.toggled > .splitToolbarButtonSeparator {
   padding: 12px 0;
   margin: 1px 0;
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.03);
+  /* box-shadow: 0 0 0 1px hsla(0,0%,100%,.03); */
   -webkit-transition-property: padding;
   -webkit-transition-duration: 10ms;
   -webkit-transition-timing-function: ease;
@@ -926,7 +925,7 @@ html[dir='rtl'] .splitToolbarButtonSeparator {
 .dropdownToolbarButton,
 .secondaryToolbarButton,
 .overlayButton {
-  min-width: 16px;
+  /* min-width: 16px;
   padding: 2px 6px 0;
   border: 1px solid transparent;
   border-radius: 2px;
@@ -936,14 +935,13 @@ html[dir='rtl'] .splitToolbarButtonSeparator {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  /* Opera does not support user-select, use <... unselectable="on"> instead */
   cursor: default;
   -webkit-transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 150ms;
   -webkit-transition-timing-function: ease;
   transition-property: background-color, border-color, box-shadow;
   transition-duration: 150ms;
-  transition-timing-function: ease;
+  transition-timing-function: ease; */
 }
 
 html[dir='ltr'] .toolbarButton,
@@ -963,26 +961,26 @@ html[dir='rtl'] .dropdownToolbarButton {
 .overlayButton,
 .secondaryToolbarButton:hover,
 .secondaryToolbarButton:focus {
-  background-color: hsla(0,0%,0%,.12);
+  /* background-color: hsla(0,0%,0%,.12);
   background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
   background-clip: padding-box;
   border: 1px solid hsla(0,0%,0%,.35);
-  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
-  box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
+  border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42); */
+  /* box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
               0 0 1px hsla(0,0%,100%,.15) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+              0 1px 0 hsla(0,0%,100%,.05); */
+              border-bottom: 1px solid black;
+              /* text-decoration: underline; */
+              cursor: pointer;
 }
 
-.toolbarButton:hover:active,
+/* .toolbarButton:hover:active,
 .overlayButton:hover:active,
 .dropdownToolbarButton:hover:active,
 .secondaryToolbarButton:hover:active {
   background-color: hsla(0,0%,0%,.2);
   background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
   border-color: hsla(0,0%,0%,.35) hsla(0,0%,0%,.4) hsla(0,0%,0%,.45);
-  box-shadow: 0 1px 1px hsla(0,0%,0%,.1) inset,
-              0 0 1px hsla(0,0%,0%,.2) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
   -webkit-transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 10ms;
   -webkit-transition-timing-function: linear;
@@ -997,25 +995,22 @@ html[dir='rtl'] .dropdownToolbarButton {
   background-color: hsla(0,0%,0%,.3);
   background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
   border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.45) hsla(0,0%,0%,.5);
-  box-shadow: 0 1px 1px hsla(0,0%,0%,.1) inset,
-              0 0 1px hsla(0,0%,0%,.2) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
   -webkit-transition-property: background-color, border-color, box-shadow;
   -webkit-transition-duration: 10ms;
   -webkit-transition-timing-function: linear;
   transition-property: background-color, border-color, box-shadow;
   transition-duration: 10ms;
   transition-timing-function: linear;
-}
+} */
 
 .toolbarButton.toggled:hover:active,
 .splitToolbarButton.toggled > .toolbarButton.toggled:hover:active,
 .secondaryToolbarButton.toggled:hover:active {
   background-color: hsla(0,0%,0%,.4);
   border-color: hsla(0,0%,0%,.4) hsla(0,0%,0%,.5) hsla(0,0%,0%,.55);
-  box-shadow: 0 1px 1px hsla(0,0%,0%,.2) inset,
+  /* box-shadow: 0 1px 1px hsla(0,0%,0%,.2) inset,
               0 0 1px hsla(0,0%,0%,.3) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+              0 1px 0 hsla(0,0%,100%,.05); */
 }
 
 .dropdownToolbarButton {
@@ -1104,7 +1099,7 @@ html[dir="rtl"] .secondaryToolbarButton::before {
   right: 4px;
 }
 
-html[dir='ltr'] .toolbarButton#sidebarToggle::before {
+/* html[dir='ltr'] .toolbarButton#sidebarToggle::before {
   content: url(images/toolbarButton-sidebarToggle.png);
 }
 html[dir='rtl'] .toolbarButton#sidebarToggle::before {
@@ -1167,12 +1162,12 @@ html[dir='rtl'] .toolbarButton.pageDown::before {
 .toolbarButton.openFile::before,
 .secondaryToolbarButton.openFile::before {
   content: url(images/toolbarButton-openFile.png);
-}
+} */
 
-.toolbarButton.download::before,
+/* .toolbarButton.download::before,
 .secondaryToolbarButton.download::before {
   content: url(images/toolbarButton-download.png);
-}
+} */
 
 .toolbarButton.bookmark,
 .secondaryToolbarButton.bookmark {
@@ -1300,7 +1295,7 @@ html[dir="rtl"] .secondaryToolbarButton > span {
   margin: 8px 4px;
   width: 1px;
   background-color: hsla(0,0%,0%,.5);
-  box-shadow: 0 0 0 1px hsla(0,0%,100%,.08);
+  /* box-shadow: 0 0 0 1px hsla(0,0%,100%,.08); */
 }
 html[dir='ltr'] .verticalToolbarSeparator {
   margin-left: 2px;
@@ -1328,8 +1323,8 @@ html[dir='rtl'] .verticalToolbarSeparator {
   background-clip: padding-box;
   border: 1px solid hsla(0,0%,0%,.35);
   border-color: hsla(0,0%,0%,.32) hsla(0,0%,0%,.38) hsla(0,0%,0%,.42);
-  box-shadow: 0 1px 0 hsla(0,0%,0%,.05) inset,
-              0 1px 0 hsla(0,0%,100%,.05);
+  /* box-shadow: 0 1px 0 hsla(0,0%,0%,.05) inset,
+              0 1px 0 hsla(0,0%,100%,.05); */
   color: hsl(0,0%,95%);
   font-size: 12px;
   line-height: 14px;

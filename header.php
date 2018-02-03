@@ -30,8 +30,6 @@ See https://github.com/adobe-type-tools/cmap-resources
 
     <?php wp_head() ?>
     <link rel="stylesheet" href="<?php echo get_template_directory_uri() ; ?>/viewer.css">
- 
-
 
 <!-- This snippet is used in production (included from viewer.html) -->
 <link rel="resource" type="application/l10n" href="<?php echo get_template_directory_uri() ; ?>/locale/locale.properties">

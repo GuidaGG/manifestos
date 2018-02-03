@@ -12,15 +12,18 @@
  * @package GulpTheme
  */
 
- get_header(); 
+ get_header();
 
-    while ( have_posts() ) : the_post(); 
+    while ( have_posts() ) : the_post();
 
        $file = get_field('pdf'); ?>
 
+<<<<<<< HEAD
   <style type="text/css">
     .highlight { background-color: yellow }
   </style>
+=======
+>>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
 
@@ -49,6 +52,26 @@
       </div>  <!-- sidebarContainer -->
 
       <div id="mainContainer">
+
+
+
+
+        <div class="reiter_wrapper">
+          <div class="reiter active">
+            <p>RAW MANIDFESTO</p>
+          </div>
+          <div class="reiter">
+            <p>LUIZ MANIFEST</p>
+          </div>
+          <div class="reiter">
+            <p>BLABLABLA</p>
+          </div>
+        </div>
+
+
+
+
+
         <div class="findbar hidden doorHanger" id="findbar">
           <div id="findbarInputContainer">
             <input id="findInput" class="toolbarField" title="Find" placeholder="Find in document…" tabindex="91" data-l10n-id="find_input">
@@ -138,7 +161,14 @@
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
-                  <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
+                  <p>← SIDEBAR</p>
+                </button>
+                <button id="highlights" class="toolbarButton highlights hiddenMediumView">
+                  <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
+                </button>
+
+                <button id="marks" class="toolbarButton marks hiddenMediumView">
+                  <div class="dot"></div><p>SHOW MARKS</p>
                 </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">
@@ -166,11 +196,11 @@
                 </button>
 
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
-                  <span data-l10n-id="print_label">Print</span>
+                  <p>PRINT</p>
                 </button>
 
                 <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
-                  <span data-l10n-id="download_label">Download</span>
+                  <p>DOWNLOAD</p>
                 </button>
                 <a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
                   <span data-l10n-id="bookmark_label">Current View</span>
@@ -356,14 +386,16 @@ var canvas = document.getElementById("page" + $('#pageNumber').val());
 var context = canvas.getContext("2d");
 
 $( ".comment_positioned" ).each(function( index ) {
- 
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
-
-
 });
 
+$( ".commentdot" ).each(function( index ) {
+  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+});
 
+$(".comment_positioned").show();
 
+<<<<<<< HEAD
 
  $(".comment_positioned").show();
 
@@ -384,6 +416,8 @@ window.addEventListener('dblclick', comment, false);
 
 /* -------------------------------*/
 
+=======
+>>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
 function createImageOnCanvas(imageId) {
     //canvas.style.display = "block";
     //document.getElementById("images").style.overflowY = "hidden";
@@ -393,6 +427,7 @@ function createImageOnCanvas(imageId) {
 }
 
 function draw(e) {
+<<<<<<< HEAD
    canvas = document.getElementById("page" + $('#pageNumber').val());
    context = canvas.getContext("2d");
     var pos = getMousePos(canvas, e);
@@ -401,6 +436,16 @@ function draw(e) {
 
     context.fillStyle = "#000000";
     context.fillRect(posx-2, posy-2, 4, 4);
+=======
+  // canvas = document.getElementById("page" + $('#pageNumber').val());
+  //  context = canvas.getContext("2d");
+  //   var pos = getMousePos(canvas, e);
+  //   posx = pos.x;
+  //   posy = pos.y;
+
+    // context.fillStyle = "#000000";
+    // context.fillRect(posx-2, posy-2, 4, 4);
+>>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
 }
 
 
@@ -411,7 +456,7 @@ function comment(e){
     posx = pos.x;
     posy = pos.y;
     //alert("change")
- 
+
   $(".comment-respond").prependTo($('.page[data-page-number="' + $('#pageNumber').val()+ '"]'));
   $(".comment-respond").css({top: posy, left: posx , position:'absolute', 'z-index':"100"});
   $("#new_post_data").val(posx + ',' + posy + ',' + $('#pageNumber').val())
