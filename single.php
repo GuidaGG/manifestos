@@ -158,11 +158,11 @@
                   <p>← SIDEBAR</p>
                 </button>
                 <button id="highlights" class="toolbarButton highlights hiddenMediumView">
-                  <p>SHOW HIGHLIGHTS</p>
+                  <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
                 </button>
 
                 <button id="marks" class="toolbarButton marks hiddenMediumView">
-                  <p>SHOW MARKS</p>
+                  <div class="dot"></div><p>SHOW MARKS</p>
                 </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">

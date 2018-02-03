@@ -60,6 +60,10 @@
 button{
   margin: 8px 22px 8px 22px !important;
 }
+button p {
+  display: inline-block;
+  vertical-align: middle;
+}
 .pdfViewer .page:first-child{
   /* top: 22px !important; */
 }
@@ -71,8 +75,19 @@ input{
 }
 .commentdot{
   background: #0051ff;
-  width: 18px;
-  height: 18px;
-  border-radius: 18px;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
   position: absolute;
+}
+.dot{
+  border: 1px solid;
+  background-color: transparent;
+  width: 10px;
+  height: 10px;
+  border-radius: 10px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
 }
