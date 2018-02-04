@@ -28,8 +28,6 @@ if ( post_password_required() ) {
 		<input class="comment_position" value="" type="hidden">
 		<input class="comment_page" value="" type="hidden">
 
-<<<<<<< HEAD
-=======
 		<h2 class="comments-title">
 			<?php
 			$comment_count = get_comments_number();
@@ -51,32 +49,38 @@ if ( post_password_required() ) {
 			}
 			?>
 		</h2><!-- .comments-title -->
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
+
 
 		<?php the_comments_navigation(); ?>
 
 		<?php
 
 		$comments = get_comments(array('post_id' => get_the_ID()));
+		?>
+	
+		<?php 
 				foreach($comments as $comment) :
 				?>
-<<<<<<< HEAD
+
 
 					<?php $position = get_comment_meta($comment->comment_ID, 'position'); 
-=======
-					<?php $position = get_comment_meta($comment->comment_ID, 'position');
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
 
 						$positions = explode(",", $position[0]);
+						$highlights = get_comment_meta($comment->comment_ID, 'highlight'); 
+						$json_array = json_encode($highlights );	
+			
 
 					?>
 
-					<div class="commentdot" id="commentdot_<?php echo $comment->comment_ID;  ?>"style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px"></div>
-						<div class="comment_positioned" id="comment_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]+20; ?>px">
+					<div class="commentdot" id="commentdot_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px"></div>
+						<div class="comment_positioned" id="<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]+20; ?>px">
+							<span data-attr="<?php echo htmlspecialchars($json_array , ENT_QUOTES, 'UTF-8'); ?>" class="c_highlight">
+							
 							<a name="comment-<?php echo $comment->comment_ID;  ?>"></a>
 							<div class="comment_content"><?php echo $comment->comment_content ;?></div>
 							<div class="comment_footer"><?php echo $comment->comment_author;?>, <?php echo $comment->comment_date ;?></div>
 						</div>
+						
 
    			<?php
 				endforeach;

@@ -18,12 +18,8 @@
 
        $file = get_field('pdf'); ?>
 
-<<<<<<< HEAD
-  <style type="text/css">
-    .highlight { background-color: yellow }
-  </style>
-=======
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
+
+
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
 
@@ -372,7 +368,7 @@
     endwhile; // End of the loop.
     ?>
 
-
+<button id="execute">Run</button>
 
 
     <script>
@@ -385,9 +381,72 @@ jQuery(document).ready(function($) {
 var canvas = document.getElementById("page" + $('#pageNumber').val());
 var context = canvas.getContext("2d");
 
+
+
+$array_highlights = [];
+$count = 0;
+
+
+/*initialize highliter */
+var applier = rangy.createClassApplier("highlight");
+var highlighter = rangy.createHighlighter();
+highlighter.addClassApplier(applier);
+
+
+/* loading selections */
+/*var $rang = [];
+
+
+$rang.push({start: 4019, end: 4039});
+$rang.push({start: 3921, end: 3952});
+var arrayLength = $rang.length;
+    for (var i = 0; i < arrayLength; i++) {
+     console.log($rang[i]);
+     highlighter.highlightoldSelection("highlight", "", $rang[0] );
+}*/
+//highlighter.highlightoldSelection("highlight", "", $rang[1]);
+
+/* LOAD COMENTS AND HIGHLIGHTS */
 $( ".comment_positioned" ).each(function( index ) {
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+
+  var high =  JSON.parse($(this).find('.c_highlight').data('attr'));
+
+ console.log(high);
+   highlighter.highlightoldSelection("highlight", "", high[0] );    
+  /* for (var i = 0; i < arrayLength; i+=2) {
+
+                var data = {start: array[i], end: array[i+1]};
+             
+                $rang.push(data);
+               
+             
+       }
+          var arrayLength = $rang.length;
+          for (var i = 0; i < arrayLength; i++) {
+            console.log($rang[i]);
+          highlighter.highlightoldSelection("highlight", "", $rang[i] );
+          }
+*/
+    //}
+            /*  for (var i = 0; i < arrayLength; i++) {
+
+                var noquotes = myJsArray[i].replace(/['"]+/g, '');
+                  var nobrackets = noquotes.replace(/[\[\]']+/g, '');
+               //   var highlights = nobrackets.split(',');
+                var arrayLength = nobrackets.length;
+                  for (var i = 0; i < arrayLength; i++) {
+                    //  alert(nobrackets[i]);
+                      //Do something
+                  }
+              }*/
+         
+   /*   $highlights.each(function( index, value ) {
+        console.log("index: " + index + " | value: " + value);
+      });*/
 });
+
+
 
 $( ".commentdot" ).each(function( index ) {
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
@@ -395,29 +454,35 @@ $( ".commentdot" ).each(function( index ) {
 
 $(".comment_positioned").show();
 
-<<<<<<< HEAD
+window.addEventListener('mousemove', draw, false);
+document.getElementById("viewer").addEventListener('mouseup', comment, false);
 
- $(".comment_positioned").show();
 
- window.addEventListener('mousemove', draw, false);
-window.addEventListener('dblclick', comment, false);
+/* new selections */
+var new_selections = [];
 
-/* GUIDA ADDED THIS - KEEP */
-    $('.textLayer').find('div').mouseup(function (e){
-      //  $(this).removeHighlight();
-        $(this).highlight(getSelectionText());
-        //getSelectionText()
-   })
-      $('.textLayer').mouseup(function (e){
-      //  $(this).removeHighlight();
-        $(this).highlight(getSelectionText());
-        //getSelectionText()
-   })
+var classname = document.getElementsByClassName("textLayer");
 
-/* -------------------------------*/
+var oldsel = [];
+oldsel .push({start: 0, end: 0});
+var myFunction = function() {
+    var newsel = highlighter.highlightSelection("highlight");
+   
+    if(newsel[0].end - newsel[0].start > 0){
+    $('#new_post_highlight').val(newsel );
 
-=======
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
+   }
+
+};
+
+
+for (var i = 0; i < classname.length; i++) {
+    classname[i].addEventListener('mouseup', myFunction, false);
+}
+
+
+
+
 function createImageOnCanvas(imageId) {
     //canvas.style.display = "block";
     //document.getElementById("images").style.overflowY = "hidden";
@@ -427,16 +492,16 @@ function createImageOnCanvas(imageId) {
 }
 
 function draw(e) {
-<<<<<<< HEAD
-   canvas = document.getElementById("page" + $('#pageNumber').val());
+
+/*   canvas = document.getElementById("page" + $('#pageNumber').val());
    context = canvas.getContext("2d");
     var pos = getMousePos(canvas, e);
     posx = pos.x;
     posy = pos.y;
 
     context.fillStyle = "#000000";
-    context.fillRect(posx-2, posy-2, 4, 4);
-=======
+    context.fillRect(posx-2, posy-2, 4, 4);*/
+
   // canvas = document.getElementById("page" + $('#pageNumber').val());
   //  context = canvas.getContext("2d");
   //   var pos = getMousePos(canvas, e);
@@ -445,11 +510,13 @@ function draw(e) {
 
     // context.fillStyle = "#000000";
     // context.fillRect(posx-2, posy-2, 4, 4);
->>>>>>> 3ed54a1dfec122414bf95709661d372e4a33867e
+
 }
 
-
+// HERE HOW DO I MAKE THAT THIS HAPPENS WHEN YOU CLICK ON WINDOWS BUT NEVER WHEN YOU CLICK INSIDE THE DIV OF THE COMMENT? 
 function comment(e){
+  if(e.target.id != "comment" && e.target.id != "submit" ){
+   
   canvas = document.getElementById("page" + $('#pageNumber').val());
    context = canvas.getContext("2d");
   var pos = getMousePos(canvas, e);
@@ -460,10 +527,11 @@ function comment(e){
   $(".comment-respond").prependTo($('.page[data-page-number="' + $('#pageNumber').val()+ '"]'));
   $(".comment-respond").css({top: posy, left: posx , position:'absolute', 'z-index':"100"});
   $("#new_post_data").val(posx + ',' + posy + ',' + $('#pageNumber').val())
-
+  }
 }
 
 /* GUIDA ADDED THIS - KEEP */
+
 function getSelectionText() {
     var text = "";
     if (window.getSelection) {
@@ -472,11 +540,11 @@ function getSelectionText() {
         text = document.selection.createRange().text;
     }
 
-    return text;
+    return documentselection();
 
 }
 
-/* -------------------------------*/
+
 
 function getMousePos(canvas, evt) {
     var rect = canvas.getBoundingClientRect();
