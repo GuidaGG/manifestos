@@ -38,35 +38,8 @@
 #toolbarContainer{
   box-shadow: 0px;
 }
-
-.reiter_wrapper{
-  width: 100%;
-  height: 24px;
-  position: relative;
-  background-color: #eee;
-}
-.reiter{
-  width: 120px;
-  height: 24px;
-  border-right: 1px solid #d0d0d0;
-  float: left;
-  position: relative;
-  cursor: pointer;
-}
-.reiter p{
-  padding: 4px 0px 4px 8px;
-}
-.reiter.active{
-  background-color: #ddd;
-}
-/* .tools_wrapper{
-  width: 100%;
-  height: 50px;
-  position: relative;
-  background-color: #eee;
-} */
 button{
-  margin: 8px 22px 8px 22px !important;
+  margin: 8px 10px 8px 20px !important;
 }
 button p {
   display: inline-block;
@@ -78,8 +51,52 @@ button p {
 textarea, input{
   border: none;
 }
+textarea{
+  padding: 3px;
+}
+.comment-form-comment{
+  font-size: 12px;
+}
 input{
-
+  padding: 6px 0px 6px 3px;
+  margin-bottom: 6px;
+  width: 98%;
+  border: 1px solid #dedede;
+}
+input#submit.submit{
+  border: 1px solid #0051ff;
+  cursor: pointer;
+  background-color: white;
+  color: #0051ff;
+  text-transform: uppercase;
+  width: 48%;
+  border-radius: 25px;
+  height: 22px;
+  line-height: 0px;
+}
+input#submit.submit:hover{
+  background-color: #0051ff;
+  color: white;
+}
+input#decline{
+  background-color: white;
+  border: 1px solid #ff4600;
+  cursor: pointer;
+  background-color: white;
+  color: #ff4600;
+  text-transform: uppercase;
+  width: 48%;
+  border-radius: 25px;
+  height: 22px;
+  line-height: 0px;
+  float: right;
+}
+input#decline:hover{
+  background-color: #ff4600;
+  color: white;
+}
+p.comment-notes{
+  display: none;
 }
 .commentdot{
   background: #0051ff;
@@ -87,15 +104,181 @@ input{
   height: 16px;
   border-radius: 16px;
   position: absolute;
+  z-index: 90;
+  cursor: pointer;
 }
 .dot{
   border: 1px solid;
   background-color: transparent;
-  width: 10px;
-  height: 10px;
-  border-radius: 10px;
+  width: 13px;
+  height: 13px;
+  border-radius: 16px;
   position: relative;
   display: inline-block;
   vertical-align: middle;
   margin-right: 5px;
+}
+.marktool, .highlighttool{
+  display: inline-block;
+}
+body .comment_positioned {
+  color: white;
+  max-width: 300px;
+  font-size: 12px;
+  position: absolute;
+  display: block;
+  background-color: #0051ff;
+  padding: 12px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);;
+  z-index: 90;
+}
+#respond{
+  background-color: lightyellow;
+  border: 0px solid;
+  padding: 8px;
+  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+}
+#respond label{
+  text-transform: uppercase;
+}
+.hidden {
+  display: none;
+}
+.arrow_left{
+  background-color: transparent;
+  width: 10px;
+  height: 15px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.arrow_down{
+  background-color: transparent;
+  width: 10px;
+  height: 15px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+.about{
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  border: 1px solid;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  right: 6px;
+}
+.square{
+  border: 1px solid;
+  background-color: transparent;
+  width: 9px;
+  height: 12px;
+  position: relative;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+label{
+  padding: 6px 0px 6px 0px;
+  display: block;
+}
+.fillh{
+  background-color: lightyellow;
+  border-color: lightyellow;
+}
+.hoverstateh{
+  border-color: lightyellow;
+}
+.fillm{
+  background-color: #0051ff;
+  border-color: #0051ff;
+}
+.hoverstatem{
+  border-color: #0051ff;
+}
+.hoverstatep{
+  background-color: white;
+}
+.comment-form-url{
+  margin-bottom: 10px;
+}
+.arrow_switch{
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  -ms-transform: rotate(180deg);
+  transform: rotate(180deg);
+  margin-top: 4px;
+}
+#aboutPage{
+  width: 100%;
+  height: 100%;
+  background-color: #ff4600;
+  position: fixed;
+  z-index: 300;
+  top: 0px;
+  padding: 10px;
+  padding-left: 20px;
+}
+#aboutPage a, #aboutPage a:visited{
+  color: black;
+  border-bottom: 1px solid;
+  text-decoration: none;
+}
+#aboutPage a:hover{
+  text-decoration: none;
+  color: transparent;
+  border-color: black;
+}
+.aboutclose{
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  border: 1px solid;
+  position: fixed;
+  display: inline-block;
+  vertical-align: top;
+  right: 20px;
+  top: 9px;
+  cursor: pointer;
+  text-align: center;
+}
+#download{
+  margin-right: 20px !important;
+}
+#download:hover {
+  animation: pulse 0.5s infinite linear;
+}
+#highlighttool, #marktool{
+    border: 1px solid black;
+    cursor: pointer;
+    color: black;
+    text-transform: uppercase;
+    border-radius: 25px;
+    height: 20px;
+    line-height: 0px;
+    width: 110px;
+}
+#highlighttool:hover{
+  color:  lightyellow;
+  border-color: lightyellow;
+}
+#marktool:hover{
+  color:  #0051ff;
+  border-color: #0051ff;
+}
+
+@keyframes pulse {
+  0% {
+    top: -3px;
+  }
+  100% {
+    top: 3px;
+  }
 }

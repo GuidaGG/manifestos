@@ -37,31 +37,26 @@
 }
 
 .textLayer .highlight {
-  margin: -1px;
-  padding: 1px;
-
-  background-color: rgb(180, 0, 170);
-  border-radius: 4px;
+  background-color: yellow;
 }
 
 .textLayer .highlight.begin {
-  border-radius: 4px 0px 0px 4px;
 }
 
 .textLayer .highlight.end {
-  border-radius: 0px 4px 4px 0px;
 }
 
 .textLayer .highlight.middle {
-  border-radius: 0px;
 }
 
 .textLayer .highlight.selected {
-  background-color: rgb(0, 100, 0);
 }
 
-.textLayer ::selection { background: rgb(0,0,255); }
-.textLayer ::-moz-selection { background: rgb(0,0,255); }
+.textLayer ::selection {
+  background-color: yellow;
+ }
+.textLayer ::-moz-selection {
+}
 
 .textLayer .endOfContent {
   display: block;
@@ -427,7 +422,7 @@ select {
 html[dir='ltr'] #sidebarContainer {
   -webkit-transition-property: left;
   transition-property: left;
-  left: -200px;
+  left: 0px;
 }
 html[dir='rtl'] #sidebarContainer {
   -webkit-transition-property: right;
@@ -461,54 +456,56 @@ html[dir='rtl'] #outerContainer.sidebarOpen > #sidebarContainer {
 html[dir='ltr'] #outerContainer.sidebarOpen > #mainContainer {
   -webkit-transition-property: left;
   transition-property: left;
-  left: 200px;
+  /* left: 200px; */
 }
 html[dir='rtl'] #outerContainer.sidebarOpen > #mainContainer {
   -webkit-transition-property: right;
   transition-property: right;
-  right: 200px;
+  /* right: 200px; */
 }
 
 #sidebarContent {
-  top: 32px;
+  top: 0px;
   bottom: 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: absolute;
-  width: 200px;
-  background-color: hsla(0,0%,0%,.1);
+  width: 140px;
+  left: 0px;
+  z-index: 200;
+  background-color: #ddd;
 }
 html[dir='ltr'] #sidebarContent {
   left: 0;
-  box-shadow: inset -1px 0 0 hsla(0,0%,0%,.25);
+  /* box-shadow: inset -1px 0 0 hsla(0,0%,0%,.25); */
 }
 html[dir='rtl'] #sidebarContent {
   right: 0;
-  box-shadow: inset 1px 0 0 hsla(0,0%,0%,.25);
+  /* box-shadow: inset 1px 0 0 hsla(0,0%,0%,.25); */
 }
 
 #viewerContainer {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: absolute;
-  top: 32px;
+  top: 12px;
   right: 0;
   bottom: 0;
   left: 0;
   outline: none;
 }
 html[dir='ltr'] #viewerContainer {
-  box-shadow: inset 1px 0 0 hsla(0,0%,100%,.05);
+  /* box-shadow: inset 1px 0 0 hsla(0,0%,100%,.05); */
 }
 html[dir='rtl'] #viewerContainer {
-  box-shadow: inset -1px 0 0 hsla(0,0%,100%,.05);
+  /* box-shadow: inset -1px 0 0 hsla(0,0%,100%,.05); */
 }
 
 .toolbar {
   position: relative;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 210;
   cursor: default;
 }
 
@@ -559,7 +556,7 @@ html[dir='rtl'] #toolbarContainer, .findbar, .secondaryToolbar {
 }
 
 #toolbarViewer {
-  height: 32px;
+  height: 36px;
 }
 
 #loadingBar {
@@ -969,7 +966,7 @@ html[dir='rtl'] .dropdownToolbarButton {
   /* box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
               0 0 1px hsla(0,0%,100%,.15) inset,
               0 1px 0 hsla(0,0%,100%,.05); */
-              border-bottom: 1px solid black;
+              /* border-bottom: 1px solid black; */
               /* text-decoration: underline; */
               cursor: pointer;
 }
@@ -1385,10 +1382,10 @@ html[dir='rtl'] .verticalToolbarSeparator {
 
 #thumbnailView {
   position: absolute;
-  width: 120px;
+  width: 140px;
   top: 0;
   bottom: 0;
-  padding: 10px 40px 0;
+  padding: 30px 14px 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
@@ -1412,12 +1409,12 @@ html[dir='rtl'] .verticalToolbarSeparator {
 }
 
 .thumbnailImage {
-  border: 1px solid transparent;
+  /* border: 1px solid transparent;
   box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.5), 0 2px 8px rgba(0, 0, 0, 0.3);
   opacity: 0.8;
   z-index: 99;
   background-color: white;
-  background-clip: content-box;
+  background-clip: content-box; */
 }
 
 .thumbnailSelectionRing {
@@ -1427,26 +1424,26 @@ html[dir='rtl'] .verticalToolbarSeparator {
 
 a:focus > .thumbnail > .thumbnailSelectionRing > .thumbnailImage,
 .thumbnail:hover > .thumbnailSelectionRing > .thumbnailImage {
-  opacity: .9;
+  /* opacity: .9; */
 }
 
 a:focus > .thumbnail > .thumbnailSelectionRing,
 .thumbnail:hover > .thumbnailSelectionRing {
-  background-color: hsla(0,0%,100%,.15);
+  /* background-color: hsla(0,0%,100%,.15);
   background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
   background-clip: padding-box;
   box-shadow: 0 1px 0 hsla(0,0%,100%,.05) inset,
               0 0 1px hsla(0,0%,100%,.2) inset,
               0 0 1px hsla(0,0%,0%,.2);
-  color: hsla(0,0%,100%,.9);
+  color: hsla(0,0%,100%,.9); */
 }
 
-.thumbnail.selected > .thumbnailSelectionRing > .thumbnailImage {
+/* .thumbnail.selected > .thumbnailSelectionRing > .thumbnailImage {
   box-shadow: 0 0 0 1px hsla(0,0%,0%,.5);
   opacity: 1;
-}
+} */
 
-.thumbnail.selected > .thumbnailSelectionRing {
+/* .thumbnail.selected > .thumbnailSelectionRing {
   background-color: hsla(0,0%,100%,.3);
   background-image: linear-gradient(hsla(0,0%,100%,.05), hsla(0,0%,100%,0));
   background-clip: padding-box;
@@ -1454,7 +1451,7 @@ a:focus > .thumbnail > .thumbnailSelectionRing,
               0 0 1px hsla(0,0%,100%,.1) inset,
               0 0 1px hsla(0,0%,0%,.2);
   color: hsla(0,0%,100%,1);
-}
+} */
 
 #outlineView,
 #attachmentsView {

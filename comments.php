@@ -21,7 +21,6 @@ if ( post_password_required() ) {
 ?>
 
 <div id="comments" class="comments-area" >
-
 	<?php
 	// You can start editing here -- including this comment!
 	if ( have_comments() ) : ?>
@@ -63,7 +62,10 @@ if ( post_password_required() ) {
 				?>
 
 
+
 					<?php $position = get_comment_meta($comment->comment_ID, 'position'); 
+
+
 
 						$positions = explode(",", $position[0]);
 						$highlights = get_comment_meta($comment->comment_ID, 'highlight'); 
@@ -72,13 +74,15 @@ if ( post_password_required() ) {
 
 					?>
 
-					<div class="commentdot" id="commentdot_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px"></div>
-						<div class="comment_positioned" id="<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]+20; ?>px">
-							<span data-attr="<?php echo htmlspecialchars($json_array , ENT_QUOTES, 'UTF-8'); ?>" class="c_highlight">
-							
-							<a name="comment-<?php echo $comment->comment_ID;  ?>"></a>
-							<div class="comment_content"><?php echo $comment->comment_content ;?></div>
-							<div class="comment_footer"><?php echo $comment->comment_author;?>, <?php echo $comment->comment_date ;?></div>
+
+						<div class="commentdot c<?php echo $comment->comment_ID;  ?>" id="commentdot_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px">
+							<div class="comment_positioned commentdot_<?php echo $comment->comment_ID;  ?>" id="comment_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]+15; ?>px; left:<?php echo $positions[0]+15; ?>px">
+								<span data-attr="<?php echo htmlspecialchars($json_array , ENT_QUOTES, 'UTF-8'); ?>" class="c_highlight">
+								<a name="comment-<?php echo $comment->comment_ID;  ?>"></a>
+								<div class="comment_content"><?php echo $comment->comment_content ;?></div>
+								<div class="comment_footer"> — <br><?php echo $comment->comment_author;?>,<br><?php echo $comment->comment_date;?></div>
+							</div>
+
 						</div>
 						
 
@@ -101,5 +105,4 @@ if ( post_password_required() ) {
 		'label_submit' => 'save',
 		'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( '', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>'));
 	?>
-
 </div><!-- #comments -->

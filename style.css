@@ -19,7 +19,7 @@ body .pdfViewer .page div.comment-respond {
   background: transparent;
   position: absolute;
   z-index: 100;
-  max-width: 300px;
+  max-width: 240px;
 }
 body .pdfViewer .page div.comment-respond h3.comment-reply-title {
   display: none;
@@ -30,21 +30,14 @@ body .pdfViewer .page div.comment-respond p.logged-in-as {
 body .pdfViewer .page div.comment-respond textarea {
   background-color: white !important;
   resize: none;
-}
-body .comment_positioned {
-  color: white;
-  max-width: 300px;
+  width: 96%;
+  outline: none;
+  z-index: 122;
   font-size: 12px;
-  position: absolute;
-  display: none;
-  background-color: #0051ff;
-  padding: 12px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
-  cursor: pointer;
-}
-#respond{
-  background-color: #fffbe8;
-  border: 0px solid;
-  padding: 8px;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.3);
+  height: 80px;
+  border: 1px solid #dedede;
+
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
