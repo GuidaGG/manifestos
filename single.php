@@ -18,6 +18,19 @@
 
        $file = get_field('pdf'); ?>
 
+<div id="aboutPage">
+    <div class="aboutclose">✕</div>
+  <p>17 MANIFESTOS<br><br>
+      Edited by Andrea Sick <br>
+      Design concept and layout: Sarah Käsmayr and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
+      Website: <a href="http://www.maximiliankiepe.de" target="_blank">Maximilian Kiepe</a> and Guida Ribeiro <br>
+      © 2018 by the authors and Textem Verlag, Hamburg<br>
+      ISBN: 978-3-86485-190-2<br><br>
+
+      Distributed by Textem Verlag<br>
+      <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
+    </p>
+</div>
 
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
@@ -189,6 +202,17 @@
                 <button id="openFile" class="toolbarButton openFile hiddenLargeView" title="Open File" tabindex="32" data-l10n-id="open_file">
                   <span data-l10n-id="open_file_label">Open</span>
                 </button>
+
+
+                <button id="highlighttool" class="toolbarButton highlighttool hiddenMediumView" >
+                  <div class="highlighttool"></div><p>HIGHLIGHT</p>
+                </button>
+
+
+                <button id="marktool" class="toolbarButton marktool hiddenMediumView">
+                  <div class="marktool"></div><p>COMMENT</p>
+                </button>
+
 
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
                   <div class="square"></div><p>PRINT</p>
@@ -398,13 +422,77 @@ $( ".commentdot" ).each(function( index ) {
 
 $('.commentdot').click(function(){
   var currentId = $(this).attr("id");
-  console.log(currentId);
   $('.'+currentId).toggleClass('hidden');
 });
 
+$('#highlights').mouseover(function(){
+  $(this).find('.dot').toggleClass('hoverstateh');
+});
+$('#highlights').mouseout(function(){
+  $(this).find('.dot').toggleClass('hoverstateh');
+});
+
+$('.highlight').toggleClass('hidden');
+
 $('#highlights').click(function(){
+  $('.highlight').toggleClass('hidden');
+  $(this).find('.dot').toggleClass('fillh');
+  if ($(this).find('.dot').hasClass('fillh')) {
+      $(this).find('p').html("HIDE HIGHLIGHTS");
+  } else {
+      $(this).find('p').html("SHOW HIGHLIGHTS");
+  }
+});
+
+$('#marks').mouseover(function(){
+  $(this).find('.dot').toggleClass('hoverstatem');
+});
+$('#marks').mouseout(function(){
+  $(this).find('.dot').toggleClass('hoverstatem');
+});
+
+$('#print').mouseover(function(){
+  $(this).find('.square').toggleClass('hoverstatep');
+});
+$('#print').mouseout(function(){
+  $(this).find('.square').toggleClass('hoverstatep');
+});
+
+$('#marks').click(function(){
   $('.commentdot').toggleClass('hidden');
-  $(this).find('.dot').toggleClass('fill');
+  $(this).find('.dot').toggleClass('fillm');
+  if ($(this).find('.dot').hasClass('fillm')) {
+    $(this).find('p').html("HIDE MARKS");
+  } else {
+    $(this).find('p').html("SHOW MARKS");
+    $(".comment_positioned").each(function(){
+      if(!$(this).hasClass('hidden')){
+        $(this).toggleClass('hidden')
+      }
+    });
+  }
+});
+
+$('input#decline').click(function(){
+  $('#respond').css({
+      left: '-9999px',
+  });
+});
+
+$('#sidebarContent').toggleClass('hidden');
+$('#sidebarToggle').click(function(){
+  $('.arrow_left').toggleClass('arrow_switch');
+  $('#sidebarContent').toggleClass('hidden');
+});
+
+$('#aboutPage').toggleClass('hidden');
+$('div.about').click(function(){
+  console.log('mofukka');
+  $('#aboutPage').toggleClass('hidden');
+});
+
+$('div.aboutclose').click(function(){
+  $('#aboutPage').toggleClass('hidden');
 });
 
  window.addEventListener('mousemove', draw, false);

@@ -20,7 +20,7 @@
   right: 0;
   bottom: 0;
   overflow: hidden;
-  opacity: 0.3;
+  opacity: 0.2;
   line-height: 1.0;
 }
 
@@ -422,7 +422,7 @@ select {
 html[dir='ltr'] #sidebarContainer {
   -webkit-transition-property: left;
   transition-property: left;
-  left: -200px;
+  left: 0px;
 }
 html[dir='rtl'] #sidebarContainer {
   -webkit-transition-property: right;
@@ -470,10 +470,9 @@ html[dir='rtl'] #outerContainer.sidebarOpen > #mainContainer {
   overflow: auto;
   -webkit-overflow-scrolling: touch;
   position: absolute;
-  width: 115px;
+  width: 140px;
   left: 0px;
   z-index: 200;
-  position: fixed;
   background-color: #ddd;
 }
 html[dir='ltr'] #sidebarContent {
@@ -506,7 +505,7 @@ html[dir='rtl'] #viewerContainer {
   position: relative;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 210;
   cursor: default;
 }
 
@@ -1383,10 +1382,10 @@ html[dir='rtl'] .verticalToolbarSeparator {
 
 #thumbnailView {
   position: absolute;
-  width: 120px;
+  width: 140px;
   top: 0;
   bottom: 0;
-  /* padding: 10px 40px 0; */
+  padding: 30px 14px 0;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
 }
