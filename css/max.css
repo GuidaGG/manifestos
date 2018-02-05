@@ -1,11 +1,3 @@
-
-
-.highlight { 
-  background-color: #0051ff !important;
- 
-    }
-
-
 #scaleSelect{
   display: none;
 }
@@ -281,4 +273,28 @@ label{
   100% {
     top: 3px;
   }
+}
+.c, .play{
+  width: 9px;
+  height: 12px;
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  margin-right: 5px;
+}
+#infoSection{
+  width: 260px;
+  height: 80px;
+  right: 0px;
+  bottom: 0px;
+  color: #ff4600;
+  position: fixed;
+  z-index: 280;
+}
+.sec{
+  margin-top: 6px;
+}
+
+#infoSection p{
+  display: inline-block;
 }
