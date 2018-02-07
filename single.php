@@ -20,8 +20,9 @@
 
 
 <div id="aboutPage">
+  <div id="din">
     <div class="aboutclose">✕</div>
-  <p>17 MANIFESTOS<br><br>
+    <p>17 MANIFESTOS<br><br>
       Edited by Andrea Sick <br>
       Design concept and layout: <a href="https://www.esthersophie.de/" target="_blank">Sarah Käsmayr</a> and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
       Website: <a href="http://www.maximiliankiepe.de" target="_blank">Maximilian Kiepe</a> and Guida Ribeiro <br>
@@ -31,8 +32,9 @@
       Distributed by Textem Verlag<br>
       <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
     </p>
+  </div>
 </div>
-
+<img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
 <div id="infoSection">
   <div class="sec">
     <div class="c">©</div><p> GUIDA RIBEIRO — RAW MANIFESTO</p><br>
@@ -42,6 +44,7 @@
   </div>
   <div class="sec">
     <div class="play">►</div><p> PLAY AUDIOFILE</p>
+    <div class="play">❙❙</div><p> PAUSE AUDIOFILE</p>
   </div>
   </p>
 </div>
