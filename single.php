@@ -20,7 +20,7 @@
 
 
 
-<div id="aboutPage" style="display: none">
+<div id="aboutPage">
   <div id="din">
 
     <div class="aboutclose">✕</div>
@@ -35,10 +35,11 @@
       <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
     </p>
   </div>
+  <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
+
 </div>
-<img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
 <div id="infoSection">
-  <div class="sec">
+  <!-- <div class="sec">
     <div class="c">©</div><p> GUIDA RIBEIRO — RAW MANIFESTO</p><br>
   </div>
   <div class="sec">
@@ -48,7 +49,8 @@
     <div class="play">►</div><p> PLAY AUDIOFILE</p>
     <div class="play">❙❙</div><p> PAUSE AUDIOFILE</p>
   </div>
-  </p>
+  </p> -->
+  <p>PRINT RAW MANIFESTO</p>
 </div>
 
 
@@ -229,8 +231,12 @@
                   <div class="dot"></div><p>COMMENT</p>
                 </button>
 
+                <button id="play" class="toolbarButton hiddenMediumView">
+                  <div class="play">▷</div><p>PLAY AUDIOFILE</p>
+                </button>
+
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
-                  <div class="square"></div><p>PRINT</p>
+                  <div class="square"></div><p>PRINT ALL</p>
                 </button>
 
                 <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
@@ -300,7 +306,7 @@
 
         <div id="viewerContainer" tabindex="0">
           <div id="viewer" class="pdfViewer">
-            
+
           </div>
         </div>
 
@@ -458,14 +464,14 @@ $( ".comment_positioned" ).each(function( index ) {
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
 
   var high =  $(this).find('.c_highlight').data('attr');
- 
+
     if(high){
       // console.log(high);
-       highlighter.deserialize(high);
+       // highlighter.deserialize(high);
     }
 });
 
-     
+
 
 
       $( ".commentdot" ).each(function( index ) {
@@ -543,7 +549,7 @@ var myFunction = function() {
       console.log("serial");
      $('#new_post_highlight').val(serial );
 
- 
+
     };
 //}
     var classname = document.getElementsByClassName("textLayer");
@@ -565,29 +571,43 @@ $('#sidebarToggle').click(function(){
   $('#sidebarContent').toggleClass('hidden');
 });
 
-$('#aboutPage').toggleClass('hidden');
-$('div.about').click(function(){
-
-  $('#aboutPage').toggleClass('hidden');
-});
-
-$('div.aboutclose').click(function(){
-  $('#aboutPage').toggleClass('hidden');
-});
+// $('#aboutPage').toggleClass('show');
+// $('div.about').click(function(){
+//   console.log('check');
+//   $('#aboutPage').toggleClass('show');
+// });
+//
+// $('div.aboutclose').click(function(){
+//   $('#aboutPage').toggleClass('show');
+// });
 
 
       $('#marks').click(function(){
         $('.commentdot').toggleClass('hidden');
         $(this).find('.dot').toggleClass('fillm');
         if ($(this).find('.dot').hasClass('fillm')) {
-          $(this).find('p').html("HIDE MARKS");
+          // $(this).find('p').html("HIDE MARKS");
         } else {
-          $(this).find('p').html("SHOW MARKS");
+          // $(this).find('p').html("SHOW MARKS");
           $(".comment_positioned").each(function(){
             if(!$(this).hasClass('hidden')){
               $(this).toggleClass('hidden')
             }
           });
+        }
+      });
+
+      $('#play').click(function(){
+        $('#play').toggleClass('pause');
+        // $(this).find('.dot').toggleClass('fillm');
+        if ($(this).hasClass('pause')) {
+          $(this).find('.play').html("❘ ❘");
+          $(this).find('.play').css('vertical-align','middle');
+          $(this).find('p').html('PAUSE AUDIOFILE')
+        } else {
+          $(this).find('.play').html("▷");
+          $(this).find('.play').css('vertical-align','top');
+          $(this).find('p').html('PLAY AUDIOFILE')
         }
       });
 
@@ -604,14 +624,14 @@ $('div.aboutclose').click(function(){
         $('#sidebarContent').toggleClass('hidden');
       });
 
-      $('#aboutPage').toggleClass('hidden');
+      // $('#aboutPage').toggleClass('hidden');
 
       $('div.about').click(function(){
-        $('#aboutPage').toggleClass('hidden');
+        $('#aboutPage').toggleClass('showabout');
       });
 
       $('div.aboutclose').click(function(){
-        $('#aboutPage').toggleClass('hidden');
+        $('#aboutPage').toggleClass('showabout');
       });
 
     //}
