@@ -194,7 +194,7 @@ function add_custom_comment_field( $comment_id ) {
 }
 add_action( 'comment_post', 'add_custom_comment_field' );
 
-
+show_admin_bar( false );
 if(function_exists("register_field_group"))
 {
 	register_field_group(array (

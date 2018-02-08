@@ -69,7 +69,8 @@ if ( post_password_required() ) {
 
 						$positions = explode(",", $position[0]);
 						$highlights = get_comment_meta($comment->comment_ID, 'highlight'); 
-						$json_array = json_encode($highlights );	
+
+						//$json_array = json_encode($highlights );	
 			
 
 					?>
@@ -77,7 +78,7 @@ if ( post_password_required() ) {
 
 						<div class="commentdot c<?php echo $comment->comment_ID;  ?>" id="commentdot_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px" style="top:<?php echo $positions[1]; ?>px; left:<?php echo $positions[0]; ?>px">
 							<div class="comment_positioned commentdot_<?php echo $comment->comment_ID;  ?>" id="comment_<?php echo $comment->comment_ID;  ?>" data-page="<?php echo $positions[2]; ?>" style="top:<?php echo $positions[1]+15; ?>px; left:<?php echo $positions[0]+15; ?>px">
-								<span data-attr="<?php echo htmlspecialchars($json_array , ENT_QUOTES, 'UTF-8'); ?>" class="c_highlight">
+								<span data-attr="<?php echo $highlights[0]; ?>" class="c_highlight">
 								<a name="comment-<?php echo $comment->comment_ID;  ?>"></a>
 								<div class="comment_content"><?php echo $comment->comment_content ;?></div>
 								<div class="comment_footer"> — <br><?php echo $comment->comment_author;?>,<br><?php echo $comment->comment_date;?></div>

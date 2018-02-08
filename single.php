@@ -19,8 +19,10 @@
        $file = get_field('pdf'); ?>
 
 
-<div id="aboutPage">
+
+<div id="aboutPage" style="display: none">
   <div id="din">
+
     <div class="aboutclose">✕</div>
     <p>17 MANIFESTOS<br><br>
       Edited by Andrea Sick <br>
@@ -48,6 +50,7 @@
   </div>
   </p>
 </div>
+
 
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
@@ -296,7 +299,9 @@
         </menu>
 
         <div id="viewerContainer" tabindex="0">
-          <div id="viewer" class="pdfViewer"></div>
+          <div id="viewer" class="pdfViewer">
+            
+          </div>
         </div>
 
         <div id="errorWrapper" hidden='true'>
@@ -411,67 +416,57 @@
 
 <script>
 jQuery(document).ready(function($) {
-  document.addEventListener('textlayerrendered', function (e) {
-    if (e.detail.pageNumber === PDFViewerApplication.page) {
 
-      var canvas = document.getElementById("page" + $('#pageNumber').val());
-      var context = canvas.getContext("2d");
-
-      $array_highlights = [];
-      $count = 0;
-
-      /*initialize highliter */
-      var applier = rangy.createClassApplier("highlight");
-      var highlighter = rangy.createHighlighter();
-      highlighter.addClassApplier(applier);
+    document.addEventListener('textlayerrendered', function (e) {
+      if (e.detail.pageNumber === PDFViewerApplication.page) {
+          console.log('hello');
 
 
-      /* loading selections */
-      /*var $rang = [];
+    var canvas = document.getElementById("page" + $('#pageNumber').val());
+    var context = canvas.getContext("2d");
 
 
-      $rang.push({start: 4019, end: 4039});
-      $rang.push({start: 3921, end: 3952});
-      var arrayLength = $rang.length;
-      for (var i = 0; i < arrayLength; i++) {
-      console.log($rang[i]);
-      highlighter.highlightoldSelection("highlight", "", $rang[0] );
-      }*/
-      //highlighter.highlightoldSelection("highlight", "", $rang[1]);
 
-      /* LOAD COMENTS AND HIGHLIGHTS */
-      $( ".comment_positioned" ).each(function( index ) {
-        $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
-        // var high =  JSON.parse($(this).find('.c_highlight').data('attr'));
-        // console.log(high);
-        // highlighter.highlightoldSelection("highlight", "", high[0] );
-        /* for (var i = 0; i < arrayLength; i+=2) {
-          var data = {start: array[i], end: array[i+1]};
-          $rang.push(data);
-        }
-        var arrayLength = $rang.length;
-        for (var i = 0; i < arrayLength; i++) {
-          console.log($rang[i]);
-          highlighter.highlightoldSelection("highlight", "", $rang[i] );
-        }
-        */
-        //}
-          /*  for (var i = 0; i < arrayLength; i++) {
+    $array_highlights = [];
+    $count = 0;
 
-          var noquotes = myJsArray[i].replace(/['"]+/g, '');
-            var nobrackets = noquotes.replace(/[\[\]']+/g, '');
-         //   var highlights = nobrackets.split(',');
-          var arrayLength = nobrackets.length;
-            for (var i = 0; i < arrayLength; i++) {
-              //  alert(nobrackets[i]);
-                //Do something
-            }
-        }*/
 
-        /*   $highlights.each(function( index, value ) {
-        console.log("index: " + index + " | value: " + value);
-        });*/
-      });
+    /*initialize highliter */
+    var applier = rangy.createClassApplier("highlight", {
+                ignoreWhiteSpace: true,
+                tagNames: ["span", "a"]
+            });
+    var highlighter = rangy.createHighlighter();
+    highlighter.addClassApplier(applier);
+
+
+/* loading selections */
+/*var $rang = [];
+
+
+$rang.push({start: 4019, end: 4039});
+$rang.push({start: 3921, end: 3952});
+var arrayLength = $rang.length;
+    for (var i = 0; i < arrayLength; i++) {
+     console.log($rang[i]);
+     highlighter.highlightoldSelection("highlight", "", $rang[0] );
+}*/
+//highlighter.highlightoldSelection("highlight", "", $rang[1]);
+
+/* LOAD COMENTS AND HIGHLIGHTS */
+$( ".comment_positioned" ).each(function( index ) {
+  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+
+  var high =  $(this).find('.c_highlight').data('attr');
+ 
+    if(high){
+      // console.log(high);
+       highlighter.deserialize(high);
+    }
+});
+
+     
+
 
       $( ".commentdot" ).each(function( index ) {
         $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
@@ -480,6 +475,7 @@ jQuery(document).ready(function($) {
       // $(".commentdot").show();
       $(".comment_positioned").toggleClass('hidden');
       $(".commentdot").toggleClass('hidden');
+
 
       $('.commentdot').click(function(){
         var currentId = $(this).attr("id");
@@ -506,9 +502,13 @@ jQuery(document).ready(function($) {
         }
       });
 
+
+//document.getElementById("viewer").addEventListener('mouseup', comment, false);
+
       $('#marks').mouseover(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
       });
+
 
       $('#marks').mouseout(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
@@ -523,29 +523,58 @@ jQuery(document).ready(function($) {
       });
 
 
-      window.addEventListener('mousemove', draw, false);
-      document.getElementById("viewer").addEventListener('mouseup', comment, false);
+var oldsel = [];
+oldsel .push({start: 10, end: 80});
 
 
-      /* new selections */
-      var new_selections = [];
 
-      var classname = document.getElementsByClassName("textLayer");
+var myFunction = function() {
 
-      var oldsel = [];
-      oldsel .push({start: 0, end: 0});
-      var myFunction = function() {
-        var newsel = highlighter.highlightSelection("highlight");
+  var page = "page" + $('#pageNumber').val() ;
+   highlighter.highlightSelection("highlight");
 
-        if(newsel[0].end - newsel[0].start > 0){
-          $('#new_post_highlight').val(newsel );
-        }
+    /*var newsel = highlighter.highlightSelection("highlight");
 
-      };
+    if(newsel[0].end - newsel[0].start > 0){
+    $('#new_post_highlight').val(newsel );*/
+
+
+      serial = highlighter.serialize()
+      console.log("serial");
+     $('#new_post_highlight').val(serial );
+
+ 
+    };
+//}
+    var classname = document.getElementsByClassName("textLayer");
 
       for (var i = 0; i < classname.length; i++) {
         classname[i].addEventListener('mouseup', myFunction, false);
       }
+
+
+$('input#decline').click(function(){
+  $('#respond').css({
+      left: '-9999px',
+  });
+});
+
+$('#sidebarContent').toggleClass('hidden');
+$('#sidebarToggle').click(function(){
+  $('.arrow_left').toggleClass('arrow_switch');
+  $('#sidebarContent').toggleClass('hidden');
+});
+
+$('#aboutPage').toggleClass('hidden');
+$('div.about').click(function(){
+
+  $('#aboutPage').toggleClass('hidden');
+});
+
+$('div.aboutclose').click(function(){
+  $('#aboutPage').toggleClass('hidden');
+});
+
 
       $('#marks').click(function(){
         $('.commentdot').toggleClass('hidden');
@@ -585,53 +614,12 @@ jQuery(document).ready(function($) {
         $('#aboutPage').toggleClass('hidden');
       });
 
-/* -------------------------------*/
-
-      function createImageOnCanvas(imageId) {
-        //canvas.style.display = "block";
-        //document.getElementById("images").style.overflowY = "hidden";
-        //var img = new Image(300, 300);
-        //img.src = document.getElementById(imageId).src;
-        //context.drawImage(img, (0), (0)); //onload....
-      }
-
-      function draw(e) {
-        /*   canvas = document.getElementById("page" + $('#pageNumber').val());
-        context = canvas.getContext("2d");
-        var pos = getMousePos(canvas, e);
-        posx = pos.x;
-        posy = pos.y;
-
-        context.fillStyle = "#000000";
-        context.fillRect(posx-2, posy-2, 4, 4);*/
-
-
-        // canvas = document.getElementById("page" + $('#pageNumber').val());
-        // context = canvas.getContext("2d");
-        //  var pos = getMousePos(canvas, e);
-        //  posx = pos.x;
-        //  posy = pos.y;
-        //
-        //  context.fillStyle = "#000000";
-        //  context.fillRect(posx-2, posy-2, 4, 4);
-
-        // canvas = document.getElementById("page" + $('#pageNumber').val());
-        //  context = canvas.getContext("2d");
-        //   var pos = getMousePos(canvas, e);
-        //   posx = pos.x;
-        //   posy = pos.y;
-
-        // context.fillStyle = "#000000";
-        // context.fillRect(posx-2, posy-2, 4, 4);
-
-
-      }
-
-    }
+    //}
 
     // HERE HOW DO I MAKE THAT THIS HAPPENS WHEN YOU CLICK ON WINDOWS BUT NEVER WHEN YOU CLICK INSIDE THE DIV OF THE COMMENT?
     function comment(e){
       if(e.target.id != "comment" && e.target.id != "submit" ){
+
 
         canvas = document.getElementById("page" + $('#pageNumber').val());
         context = canvas.getContext("2d");
@@ -666,7 +654,10 @@ jQuery(document).ready(function($) {
       };
     }
 
-  }, true);
+
+}
+
+    }, true);
 
 });
 
