@@ -133,7 +133,8 @@ p.comment-notes{
   display: none;
 }
 .commentdot{
-  background: #f9f578;
+  background: #fff06e;
+  background: #ffeb32;
   width: 16px;
   height: 16px;
   border-radius: 16px;
@@ -166,7 +167,7 @@ body .comment_positioned {
   position: absolute;
   display: block;
   background-color: lightyellow;
-  /* border: 1px solid #f9f578; */
+  /* border: 1px solid #ffeb32; */
   padding: 12px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   z-index: 90;
@@ -227,18 +228,18 @@ label{
   display: block;
 }
 .fillh{
-  background-color: #f9f578;
-  border-color: #f9f578;
+  background-color: #ffeb32;
+  border-color: #ffeb32;
 }
 .hoverstateh{
-  border-color: #f9f578;
+  border-color: #ffeb32;
 }
 .fillm{
-  background-color: #f9f578;
-  border-color: #f9f578;
+  background-color: #ffeb32;
+  border-color: #ffeb32;
 }
 .hoverstatem{
-  border-color: #f9f578;
+  border-color: #ffeb32;
 }
 .hoverstatep{
   background-color: white;
@@ -339,8 +340,8 @@ label{
   width: 110px;
 }
 #highlighttool:hover{
-  color:  light#f9f578;
-  border-color: light#f9f578;
+  color:  light#ffeb32;
+  border-color: light#ffeb32;
 }
 #marktool:hover{
   color:  #0051ff;
@@ -379,7 +380,7 @@ label{
 #infoSection{
   right: 20px;
   bottom: 20px;
-  /* color: #f9f578; */
+  /* color: #fff06e; */
   position: fixed;
   z-index: 260;
 }
