@@ -1,3 +1,8 @@
+html, body{
+  font: Arial !important;
+  font-family: Arial !important;
+}
+
 #scaleSelect{
   display: none;
 }
