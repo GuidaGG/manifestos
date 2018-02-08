@@ -124,13 +124,8 @@ function gulptheme_scripts() {
 	wp_enqueue_style( 'gulptheme-max', get_template_directory_uri() . '/css/max.css');
 
 	 wp_enqueue_script('jquery-ui-core');
-<<<<<<< HEAD
-
-
-=======
 	
-	 wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );	
->>>>>>> 0783411dfba9199b824b28a107d698f75308617c
+	 wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'gulptheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
