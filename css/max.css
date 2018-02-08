@@ -61,7 +61,7 @@ input{
   border: 1px solid #dedede;
 }
 input#submit.submit{
-  border: 1px solid #0051ff;
+  /* border: 1px solid #0051ff;
   cursor: pointer;
   background-color: white;
   color: #0051ff;
@@ -69,14 +69,27 @@ input#submit.submit{
   width: 48%;
   border-radius: 25px;
   height: 22px;
+  line-height: 0px; */
+
+  border: 1px solid #ddd;
+  cursor: pointer;
+  background-color: white;
+  color: black;
+  text-transform: uppercase;
+  width: 100%;
+  border-radius: 25px;
+  height: 30px;
   line-height: 0px;
 }
 input#submit.submit:hover{
-  background-color: #0051ff;
-  color: white;
+  /* background-color: #0051ff;
+  color: white; */
+  background-color: #ddd;
+
+
 }
 input#decline{
-  background-color: white;
+  /* background-color: white;
   border: 1px solid #ff4600;
   cursor: pointer;
   background-color: white;
@@ -86,17 +99,36 @@ input#decline{
   border-radius: 25px;
   height: 22px;
   line-height: 0px;
+  float: right; */
+
+  background-color: transparent;
+  width: 16px;
+  height: 16px;
+  border-radius: 16px;
+  border: 1px solid;
+  position: relative;
   float: right;
+  display: inline-block;
+  vertical-align: top;
+  right: 20px;
+  top: 9px;
+  cursor: pointer;
+  text-align: center;
+  z-index: 300;
+  line-height: 0px;
+  padding-left: 0px;
 }
 input#decline:hover{
-  background-color: #ff4600;
-  color: white;
+  /* background-color: #ff4600;
+  color: white; */
+
+
 }
 p.comment-notes{
   display: none;
 }
 .commentdot{
-  background: #0051ff;
+  background: #f9bb06;
   width: 16px;
   height: 16px;
   border-radius: 16px;
@@ -124,7 +156,7 @@ body .comment_positioned {
   font-size: 12px;
   position: absolute;
   display: block;
-  background-color: #0051ff;
+  background-color: #f9bb06;
   padding: 12px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);;
   z-index: 90;
@@ -192,11 +224,11 @@ label{
   border-color: lightyellow;
 }
 .fillm{
-  background-color: #0051ff;
-  border-color: #0051ff;
+  background-color: #f9bb06;
+  border-color: #f9bb06;
 }
 .hoverstatem{
-  border-color: #0051ff;
+  border-color: #f9bb06;
 }
 .hoverstatep{
   background-color: white;
@@ -262,6 +294,7 @@ label{
   cursor: pointer;
   text-align: center;
   z-index: 300;
+  line-height: 17px;
 }
 #download{
   margin-right: 20px !important;
@@ -329,4 +362,7 @@ label{
 
 #infoSection p{
   display: inline-block;
+}
+#new_post_highlight{
+  display: none;
 }

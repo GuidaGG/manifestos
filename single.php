@@ -183,13 +183,10 @@
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
                   <div class="arrow_left">←</div><p>SIDEBAR</p>
                 </button>
-                <button id="highlights" class="toolbarButton highlights hiddenMediumView">
+                <!-- <button id="highlights" class="toolbarButton highlights hiddenMediumView">
                   <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
-                </button>
+                </button> -->
 
-                <button id="marks" class="toolbarButton marks hiddenMediumView">
-                  <div class="dot"></div><p>SHOW MARKS</p>
-                </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">
                   <span data-l10n-id="findbar_label">Find</span>
@@ -216,15 +213,18 @@
                 </button>
 
 
-                <button id="highlighttool" class="toolbarButton highlighttool hiddenMediumView" >
+                <!-- <button id="highlighttool" class="toolbarButton highlighttool hiddenMediumView" >
                   <div class="highlighttool"></div><p>HIGHLIGHT</p>
                 </button>
 
 
                 <button id="marktool" class="toolbarButton marktool hiddenMediumView">
                   <div class="marktool"></div><p>COMMENT</p>
-                </button>
+                </button> -->
 
+                <button id="marks" class="toolbarButton marks hiddenMediumView">
+                  <div class="dot"></div><p>COMMENT</p>
+                </button>
 
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
                   <div class="square"></div><p>PRINT</p>
