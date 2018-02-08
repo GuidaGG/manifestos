@@ -409,289 +409,268 @@
 <button id="execute">Run</button>
 
 
-    <script>
+<script>
 jQuery(document).ready(function($) {
-    document.addEventListener('textlayerrendered', function (e) {
-      if (e.detail.pageNumber === PDFViewerApplication.page) {
-          console.log('hello');
+  document.addEventListener('textlayerrendered', function (e) {
+    if (e.detail.pageNumber === PDFViewerApplication.page) {
+
+      var canvas = document.getElementById("page" + $('#pageNumber').val());
+      var context = canvas.getContext("2d");
+
+      $array_highlights = [];
+      $count = 0;
+
+      /*initialize highliter */
+      var applier = rangy.createClassApplier("highlight");
+      var highlighter = rangy.createHighlighter();
+      highlighter.addClassApplier(applier);
 
 
-var canvas = document.getElementById("page" + $('#pageNumber').val());
-var context = canvas.getContext("2d");
+      /* loading selections */
+      /*var $rang = [];
 
 
+      $rang.push({start: 4019, end: 4039});
+      $rang.push({start: 3921, end: 3952});
+      var arrayLength = $rang.length;
+      for (var i = 0; i < arrayLength; i++) {
+      console.log($rang[i]);
+      highlighter.highlightoldSelection("highlight", "", $rang[0] );
+      }*/
+      //highlighter.highlightoldSelection("highlight", "", $rang[1]);
 
-$array_highlights = [];
-$count = 0;
-
-
-/*initialize highliter */
-var applier = rangy.createClassApplier("highlight");
-var highlighter = rangy.createHighlighter();
-highlighter.addClassApplier(applier);
-
-
-/* loading selections */
-/*var $rang = [];
-
-
-$rang.push({start: 4019, end: 4039});
-$rang.push({start: 3921, end: 3952});
-var arrayLength = $rang.length;
-    for (var i = 0; i < arrayLength; i++) {
-     console.log($rang[i]);
-     highlighter.highlightoldSelection("highlight", "", $rang[0] );
-}*/
-//highlighter.highlightoldSelection("highlight", "", $rang[1]);
-
-/* LOAD COMENTS AND HIGHLIGHTS */
-$( ".comment_positioned" ).each(function( index ) {
-  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
-
-  // var high =  JSON.parse($(this).find('.c_highlight').data('attr'));
-
- // console.log(high);
-   // highlighter.highlightoldSelection("highlight", "", high[0] );
-  /* for (var i = 0; i < arrayLength; i+=2) {
-
-                var data = {start: array[i], end: array[i+1]};
-
-                $rang.push(data);
-
-
-       }
-          var arrayLength = $rang.length;
-          for (var i = 0; i < arrayLength; i++) {
-            console.log($rang[i]);
+      /* LOAD COMENTS AND HIGHLIGHTS */
+      $( ".comment_positioned" ).each(function( index ) {
+        $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+        // var high =  JSON.parse($(this).find('.c_highlight').data('attr'));
+        // console.log(high);
+        // highlighter.highlightoldSelection("highlight", "", high[0] );
+        /* for (var i = 0; i < arrayLength; i+=2) {
+          var data = {start: array[i], end: array[i+1]};
+          $rang.push(data);
+        }
+        var arrayLength = $rang.length;
+        for (var i = 0; i < arrayLength; i++) {
+          console.log($rang[i]);
           highlighter.highlightoldSelection("highlight", "", $rang[i] );
-          }
-*/
-    //}
-            /*  for (var i = 0; i < arrayLength; i++) {
+        }
+        */
+        //}
+          /*  for (var i = 0; i < arrayLength; i++) {
 
-                var noquotes = myJsArray[i].replace(/['"]+/g, '');
-                  var nobrackets = noquotes.replace(/[\[\]']+/g, '');
-               //   var highlights = nobrackets.split(',');
-                var arrayLength = nobrackets.length;
-                  for (var i = 0; i < arrayLength; i++) {
-                    //  alert(nobrackets[i]);
-                      //Do something
-                  }
-              }*/
+          var noquotes = myJsArray[i].replace(/['"]+/g, '');
+            var nobrackets = noquotes.replace(/[\[\]']+/g, '');
+         //   var highlights = nobrackets.split(',');
+          var arrayLength = nobrackets.length;
+            for (var i = 0; i < arrayLength; i++) {
+              //  alert(nobrackets[i]);
+                //Do something
+            }
+        }*/
 
-   /*   $highlights.each(function( index, value ) {
+        /*   $highlights.each(function( index, value ) {
         console.log("index: " + index + " | value: " + value);
-      });*/
-});
+        });*/
+      });
+
+      $( ".commentdot" ).each(function( index ) {
+        $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+      });
+
+      // $(".commentdot").show();
+      $(".comment_positioned").toggleClass('hidden');
+      $(".commentdot").toggleClass('hidden');
+
+      $('.commentdot').click(function(){
+        var currentId = $(this).attr("id");
+        $('.'+currentId).toggleClass('hidden');
+      });
+
+      $('#highlights').mouseover(function(){
+        $(this).find('.dot').toggleClass('hoverstateh');
+      });
+
+      $('#highlights').mouseout(function(){
+        $(this).find('.dot').toggleClass('hoverstateh');
+      });
+
+      $('.highlight').toggleClass('unhidden');
+
+      $('#highlights').click(function(){
+        $('.highlight').toggleClass('unhidden');
+        $(this).find('.dot').toggleClass('fillh');
+        if ($(this).find('.dot').hasClass('fillh')) {
+          $(this).find('p').html("HIDE HIGHLIGHTS");
+        } else {
+          $(this).find('p').html("SHOW HIGHLIGHTS");
+        }
+      });
+
+      $('#marks').mouseover(function(){
+        $(this).find('.dot').toggleClass('hoverstatem');
+      });
+
+      $('#marks').mouseout(function(){
+        $(this).find('.dot').toggleClass('hoverstatem');
+      });
+
+      $('#print').mouseover(function(){
+        $(this).find('.square').toggleClass('hoverstatep');
+      });
+
+      $('#print').mouseout(function(){
+        $(this).find('.square').toggleClass('hoverstatep');
+      });
 
 
-
-$( ".commentdot" ).each(function( index ) {
-  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
-});
-
-// $(".commentdot").show();
-//
- $(".comment_positioned").toggleClass('hidden');
-  $(".commentdot").toggleClass('hidden');
-
-$('.commentdot').click(function(){
-  var currentId = $(this).attr("id");
-  $('.'+currentId).toggleClass('hidden');
-});
-
-$('#highlights').mouseover(function(){
-  $(this).find('.dot').toggleClass('hoverstateh');
-});
-$('#highlights').mouseout(function(){
-  $(this).find('.dot').toggleClass('hoverstateh');
-});
-
-$('.highlight').toggleClass('unhidden');
-
-$('#highlights').click(function(){
-  $('.highlight').toggleClass('unhidden');
-  $(this).find('.dot').toggleClass('fillh');
-  if ($(this).find('.dot').hasClass('fillh')) {
-      $(this).find('p').html("HIDE HIGHLIGHTS");
-  } else {
-      $(this).find('p').html("SHOW HIGHLIGHTS");
-  }
-});
-
-$('#marks').mouseover(function(){
-  $(this).find('.dot').toggleClass('hoverstatem');
-});
-$('#marks').mouseout(function(){
-  $(this).find('.dot').toggleClass('hoverstatem');
-});
-
-$('#print').mouseover(function(){
-  $(this).find('.square').toggleClass('hoverstatep');
-});
-$('#print').mouseout(function(){
-  $(this).find('.square').toggleClass('hoverstatep');
-});
+      window.addEventListener('mousemove', draw, false);
+      document.getElementById("viewer").addEventListener('mouseup', comment, false);
 
 
-window.addEventListener('mousemove', draw, false);
-document.getElementById("viewer").addEventListener('mouseup', comment, false);
+      /* new selections */
+      var new_selections = [];
 
+      var classname = document.getElementsByClassName("textLayer");
 
-/* new selections */
-var new_selections = [];
+      var oldsel = [];
+      oldsel .push({start: 0, end: 0});
+      var myFunction = function() {
+        var newsel = highlighter.highlightSelection("highlight");
 
-var classname = document.getElementsByClassName("textLayer");
+        if(newsel[0].end - newsel[0].start > 0){
+          $('#new_post_highlight').val(newsel );
+        }
 
-var oldsel = [];
-oldsel .push({start: 0, end: 0});
-var myFunction = function() {
-    var newsel = highlighter.highlightSelection("highlight");
+      };
 
-    if(newsel[0].end - newsel[0].start > 0){
-    $('#new_post_highlight').val(newsel );
-
-   }
-
-};
-
-
-for (var i = 0; i < classname.length; i++) {
-    classname[i].addEventListener('mouseup', myFunction, false);
-}
-
-
-
-$('#marks').click(function(){
-  $('.commentdot').toggleClass('hidden');
-  $(this).find('.dot').toggleClass('fillm');
-  if ($(this).find('.dot').hasClass('fillm')) {
-    $(this).find('p').html("HIDE MARKS");
-  } else {
-    $(this).find('p').html("SHOW MARKS");
-    $(".comment_positioned").each(function(){
-      if(!$(this).hasClass('hidden')){
-        $(this).toggleClass('hidden')
+      for (var i = 0; i < classname.length; i++) {
+        classname[i].addEventListener('mouseup', myFunction, false);
       }
-    });
-  }
-});
 
-$('input#decline').click(function(){
-  $('#respond').css({
-      left: '-9999px',
-  });
-});
+      $('#marks').click(function(){
+        $('.commentdot').toggleClass('hidden');
+        $(this).find('.dot').toggleClass('fillm');
+        if ($(this).find('.dot').hasClass('fillm')) {
+          $(this).find('p').html("HIDE MARKS");
+        } else {
+          $(this).find('p').html("SHOW MARKS");
+          $(".comment_positioned").each(function(){
+            if(!$(this).hasClass('hidden')){
+              $(this).toggleClass('hidden')
+            }
+          });
+        }
+      });
 
-$('#sidebarContent').toggleClass('hidden');
-$('#sidebarToggle').click(function(){
-  $('.arrow_left').toggleClass('arrow_switch');
-  $('#sidebarContent').toggleClass('hidden');
-});
+      $('input#decline').click(function(){
+        $('#respond').css({
+          left: '-9999px',
+        });
+      });
 
-$('#aboutPage').toggleClass('hidden');
-$('div.about').click(function(){
-  console.log('mofukka');
-  $('#aboutPage').toggleClass('hidden');
-});
+      $('#sidebarContent').toggleClass('hidden');
 
-$('div.aboutclose').click(function(){
-  $('#aboutPage').toggleClass('hidden');
-});
+      $('#sidebarToggle').click(function(){
+        $('.arrow_left').toggleClass('arrow_switch');
+        $('#sidebarContent').toggleClass('hidden');
+      });
 
+      $('#aboutPage').toggleClass('hidden');
 
+      $('div.about').click(function(){
+        $('#aboutPage').toggleClass('hidden');
+      });
+
+      $('div.aboutclose').click(function(){
+        $('#aboutPage').toggleClass('hidden');
+      });
 
 /* -------------------------------*/
 
-function createImageOnCanvas(imageId) {
-    //canvas.style.display = "block";
-    //document.getElementById("images").style.overflowY = "hidden";
-    //var img = new Image(300, 300);
-    //img.src = document.getElementById(imageId).src;
-    //context.drawImage(img, (0), (0)); //onload....
-}
+      function createImageOnCanvas(imageId) {
+        //canvas.style.display = "block";
+        //document.getElementById("images").style.overflowY = "hidden";
+        //var img = new Image(300, 300);
+        //img.src = document.getElementById(imageId).src;
+        //context.drawImage(img, (0), (0)); //onload....
+      }
 
-function draw(e) {
+      function draw(e) {
+        /*   canvas = document.getElementById("page" + $('#pageNumber').val());
+        context = canvas.getContext("2d");
+        var pos = getMousePos(canvas, e);
+        posx = pos.x;
+        posy = pos.y;
 
-
-/*   canvas = document.getElementById("page" + $('#pageNumber').val());
-   context = canvas.getContext("2d");
-    var pos = getMousePos(canvas, e);
-    posx = pos.x;
-    posy = pos.y;
-
-    context.fillStyle = "#000000";
-    context.fillRect(posx-2, posy-2, 4, 4);*/
+        context.fillStyle = "#000000";
+        context.fillRect(posx-2, posy-2, 4, 4);*/
 
 
-   // canvas = document.getElementById("page" + $('#pageNumber').val());
-   // context = canvas.getContext("2d");
-   //  var pos = getMousePos(canvas, e);
-   //  posx = pos.x;
-   //  posy = pos.y;
-   //
-   //  context.fillStyle = "#000000";
-   //  context.fillRect(posx-2, posy-2, 4, 4);
+        // canvas = document.getElementById("page" + $('#pageNumber').val());
+        // context = canvas.getContext("2d");
+        //  var pos = getMousePos(canvas, e);
+        //  posx = pos.x;
+        //  posy = pos.y;
+        //
+        //  context.fillStyle = "#000000";
+        //  context.fillRect(posx-2, posy-2, 4, 4);
 
-  // canvas = document.getElementById("page" + $('#pageNumber').val());
-  //  context = canvas.getContext("2d");
-  //   var pos = getMousePos(canvas, e);
-  //   posx = pos.x;
-  //   posy = pos.y;
+        // canvas = document.getElementById("page" + $('#pageNumber').val());
+        //  context = canvas.getContext("2d");
+        //   var pos = getMousePos(canvas, e);
+        //   posx = pos.x;
+        //   posy = pos.y;
 
-    // context.fillStyle = "#000000";
-    // context.fillRect(posx-2, posy-2, 4, 4);
+        // context.fillStyle = "#000000";
+        // context.fillRect(posx-2, posy-2, 4, 4);
 
 
-}
+      }
 
-}
+    }
 
-// HERE HOW DO I MAKE THAT THIS HAPPENS WHEN YOU CLICK ON WINDOWS BUT NEVER WHEN YOU CLICK INSIDE THE DIV OF THE COMMENT?
-function comment(e){
-  if(e.target.id != "comment" && e.target.id != "submit" ){
+    // HERE HOW DO I MAKE THAT THIS HAPPENS WHEN YOU CLICK ON WINDOWS BUT NEVER WHEN YOU CLICK INSIDE THE DIV OF THE COMMENT?
+    function comment(e){
+      if(e.target.id != "comment" && e.target.id != "submit" ){
 
-  canvas = document.getElementById("page" + $('#pageNumber').val());
-   context = canvas.getContext("2d");
-  var pos = getMousePos(canvas, e);
-    posx = pos.x;
-    posy = pos.y;
-    //alert("change")
+        canvas = document.getElementById("page" + $('#pageNumber').val());
+        context = canvas.getContext("2d");
+        var pos = getMousePos(canvas, e);
+        posx = pos.x;
+        posy = pos.y;
+        //alert("change")
 
-  $(".comment-respond").prependTo($('.page[data-page-number="' + $('#pageNumber').val()+ '"]'));
-  $(".comment-respond").css({top: posy, left: posx , position:'absolute', 'z-index':"100"});
-  $("#new_post_data").val(posx + ',' + posy + ',' + $('#pageNumber').val())
-  }
-}
+        $(".comment-respond").prependTo($('.page[data-page-number="' + $('#pageNumber').val()+ '"]'));
+        $(".comment-respond").css({top: posy, left: posx , position:'absolute', 'z-index':"100"});
+        $("#new_post_data").val(posx + ',' + posy + ',' + $('#pageNumber').val())
+      }
+    }
 
-/* GUIDA ADDED THIS - KEEP */
+    /* GUIDA ADDED THIS - KEEP */
 
-function getSelectionText() {
+    function getSelectionText() {
     var text = "";
     if (window.getSelection) {
         text = window.getSelection().toString();
-    } else if (document.selection && document.selection.type != "Control") {
+      } else if (document.selection && document.selection.type != "Control") {
         text = document.selection.createRange().text;
+      }
+      return documentselection();
     }
 
-    return documentselection();
+    function getMousePos(canvas, evt) {
+      var rect = canvas.getBoundingClientRect();
+      return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+      };
+    }
 
-}
-
-
-
-function getMousePos(canvas, evt) {
-    var rect = canvas.getBoundingClientRect();
-    return {
-      x: evt.clientX - rect.left,
-      y: evt.clientY - rect.top
-    };
-}
-
-    }, true);
+  }, true);
 
 });
-    </script>
+
+</script>
 
 <?php
 get_footer();
