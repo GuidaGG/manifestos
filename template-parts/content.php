@@ -1,6 +1,11 @@
 <?php
 /**
- * Template part for displaying posts
+ * The main template file
+ *
+ * This is the most generic template file in a WordPress theme
+ * and one of the two required files for a theme (the other being style.css).
+ * It is used to display a page when nothing more specific matches a query.
+ * E.g., it puts together the home page when no home.php file exists.
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
@@ -10,9 +15,42 @@
 
 
 
-	     $file = get_field('pdf'); 
+       $file = get_field('pdf', $post->ID); ?>
+      
 
-?>
+
+<div id="aboutPage" style="display: none">
+  <div id="din">
+
+    <div class="aboutclose">✕</div>
+    <p>17 MANIFESTOS<br><br>
+      Edited by Andrea Sick <br>
+      Design concept and layout: <a href="https://www.esthersophie.de/" target="_blank">Sarah Käsmayr</a> and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
+      Website: <a href="http://www.maximiliankiepe.de" target="_blank">Maximilian Kiepe</a> and Guida Ribeiro <br>
+      © 2018 by the authors and Textem Verlag, Hamburg<br>
+      ISBN: 978-3-86485-190-2<br><br>
+
+      Distributed by Textem Verlag<br>
+      <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
+    </p>
+  </div>
+</div>
+<img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
+<div id="infoSection">
+  <div class="sec">
+    <div class="c">©</div><p> GUIDA RIBEIRO — RAW MANIFESTO</p><br>
+  </div>
+  <div class="sec">
+    <div class="square"></div><p> PRINT RAW MANIFESTO</p><br>
+  </div>
+  <div class="sec">
+    <div class="play">►</div><p> PLAY AUDIOFILE</p>
+    <div class="play">❙❙</div><p> PAUSE AUDIOFILE</p>
+  </div>
+  </p>
+</div>
+
+
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
 
@@ -41,6 +79,21 @@
       </div>  <!-- sidebarContainer -->
 
       <div id="mainContainer">
+
+      <!--
+        <div class="reiter_wrapper">
+          <div class="reiter active">
+            <p>RAW MANIDFESTO</p>
+          </div>
+          <div class="reiter">
+            <p>LUIZ MANIFEST</p>
+          </div>
+          <div class="reiter">
+            <p>BLABLABLA</p>
+          </div>
+        </div>
+      -->
+
         <div class="findbar hidden doorHanger" id="findbar">
           <div id="findbarInputContainer">
             <input id="findInput" class="toolbarField" title="Find" placeholder="Find in document…" tabindex="91" data-l10n-id="find_input">
@@ -130,7 +183,14 @@
             <div id="toolbarViewer">
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
-                  <span data-l10n-id="toggle_sidebar_label">Toggle Sidebar</span>
+                  <div class="arrow_left">←</div><p>SIDEBAR</p>
+                </button>
+                <button id="highlights" class="toolbarButton highlights hiddenMediumView">
+                  <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
+                </button>
+
+                <button id="marks" class="toolbarButton marks hiddenMediumView">
+                  <div class="dot"></div><p>SHOW MARKS</p>
                 </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">
@@ -157,12 +217,26 @@
                   <span data-l10n-id="open_file_label">Open</span>
                 </button>
 
+
+                <button id="highlighttool" class="toolbarButton highlighttool hiddenMediumView" >
+                  <div class="highlighttool"></div><p>HIGHLIGHT</p>
+                </button>
+
+
+                <button id="marktool" class="toolbarButton marktool hiddenMediumView">
+                  <div class="marktool"></div><p>COMMENT</p>
+                </button>
+
+
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
-                  <span data-l10n-id="print_label">Print</span>
+                  <div class="square"></div><p>PRINT</p>
                 </button>
 
                 <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
-                  <span data-l10n-id="download_label">Download</span>
+                  <div class="arrow_down">↓</div><p>DOWNLOAD</p>
+                </button>
+                <button id="about" class="toolbarButton about hiddenMediumView">
+                  <div class="about">?</div>
                 </button>
                 <a href="#" id="viewBookmark" class="toolbarButton bookmark hiddenSmallView" title="Current view (copy or open in new window)" tabindex="35" data-l10n-id="bookmark">
                   <span data-l10n-id="bookmark_label">Current View</span>
@@ -224,7 +298,9 @@
         </menu>
 
         <div id="viewerContainer" tabindex="0">
-          <div id="viewer" class="pdfViewer"></div>
+          <div id="viewer" class="pdfViewer">
+            
+          </div>
         </div>
 
         <div id="errorWrapper" hidden='true'>
@@ -325,6 +401,251 @@
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
-  
+<script>
+jQuery(document).ready(function($) {
 
-  
+    document.addEventListener('textlayerrendered', function (e) {
+      if (e.detail.pageNumber === PDFViewerApplication.page) {
+          console.log('hello');
+
+
+    var canvas = document.getElementById("page" + $('#pageNumber').val());
+    var context = canvas.getContext("2d");
+
+
+
+    $array_highlights = [];
+    $count = 0;
+
+
+    /*initialize highliter */
+    var applier = rangy.createClassApplier("highlight", {
+                ignoreWhiteSpace: true,
+                tagNames: ["span", "a"]
+            });
+    var highlighter = rangy.createHighlighter();
+    highlighter.addClassApplier(applier);
+
+
+/* print each manifesto */
+
+$('#print_button').click(function(){
+      var doc = document.getElementById('pdfDocument');
+
+   
+        doc.print();
+
+});
+/* print each manifesto */
+
+
+
+/* LOAD COMENTS AND HIGHLIGHTS */
+$( ".comment_positioned" ).each(function( index ) {
+  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+
+  var high =  $(this).find('.c_highlight').data('attr');
+ 
+    if(high){
+      // console.log(high);
+       highlighter.deserialize(high);
+    }
+});
+
+     
+
+
+      $( ".commentdot" ).each(function( index ) {
+        $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+      });
+
+      // $(".commentdot").show();
+      $(".comment_positioned").toggleClass('hidden');
+      $(".commentdot").toggleClass('hidden');
+
+
+      $('.commentdot').click(function(){
+        var currentId = $(this).attr("id");
+        $('.'+currentId).toggleClass('hidden');
+      });
+
+      $('#highlights').mouseover(function(){
+        $(this).find('.dot').toggleClass('hoverstateh');
+      });
+
+      $('#highlights').mouseout(function(){
+        $(this).find('.dot').toggleClass('hoverstateh');
+      });
+
+      $('.highlight').toggleClass('unhidden');
+
+      $('#highlights').click(function(){
+        $('.highlight').toggleClass('unhidden');
+        $(this).find('.dot').toggleClass('fillh');
+        if ($(this).find('.dot').hasClass('fillh')) {
+          $(this).find('p').html("HIDE HIGHLIGHTS");
+        } else {
+          $(this).find('p').html("SHOW HIGHLIGHTS");
+        }
+      });
+
+
+document.getElementById("viewer").addEventListener('mouseup', comment, false);
+
+      $('#marks').mouseover(function(){
+        $(this).find('.dot').toggleClass('hoverstatem');
+      });
+
+
+      $('#marks').mouseout(function(){
+        $(this).find('.dot').toggleClass('hoverstatem');
+      });
+
+      $('#print').mouseover(function(){
+        $(this).find('.square').toggleClass('hoverstatep');
+      });
+
+      $('#print').mouseout(function(){
+        $(this).find('.square').toggleClass('hoverstatep');
+      });
+
+
+var oldsel = [];
+oldsel .push({start: 10, end: 80});
+
+
+
+var myFunction = function() {
+
+  var page = "page" + $('#pageNumber').val() ;
+   highlighter.highlightSelection("highlight");
+
+    /*var newsel = highlighter.highlightSelection("highlight");
+
+    if(newsel[0].end - newsel[0].start > 0){
+    $('#new_post_highlight').val(newsel );*/
+
+
+      serial = highlighter.serialize()
+      console.log("serial");
+     $('#new_post_highlight').val(serial );
+
+ 
+    };
+//}
+    var classname = document.getElementsByClassName("textLayer");
+
+      for (var i = 0; i < classname.length; i++) {
+        classname[i].addEventListener('mouseup', myFunction, false);
+      }
+
+
+$('input#decline').click(function(){
+  $('#respond').css({
+      left: '-9999px',
+  });
+});
+
+$('#sidebarContent').toggleClass('hidden');
+$('#sidebarToggle').click(function(){
+  $('.arrow_left').toggleClass('arrow_switch');
+  $('#sidebarContent').toggleClass('hidden');
+});
+
+$('#aboutPage').toggleClass('hidden');
+$('div.about').click(function(){
+
+  $('#aboutPage').toggleClass('hidden');
+});
+
+$('div.aboutclose').click(function(){
+  $('#aboutPage').toggleClass('hidden');
+});
+
+
+      $('#marks').click(function(){
+        $('.commentdot').toggleClass('hidden');
+        $(this).find('.dot').toggleClass('fillm');
+        if ($(this).find('.dot').hasClass('fillm')) {
+          $(this).find('p').html("HIDE MARKS");
+        } else {
+          $(this).find('p').html("SHOW MARKS");
+          $(".comment_positioned").each(function(){
+            if(!$(this).hasClass('hidden')){
+              $(this).toggleClass('hidden')
+            }
+          });
+        }
+      });
+
+      $('input#decline').click(function(){
+        $('#respond').css({
+          left: '-9999px',
+        });
+      });
+
+      $('#sidebarContent').toggleClass('hidden');
+
+      $('#sidebarToggle').click(function(){
+        $('.arrow_left').toggleClass('arrow_switch');
+        $('#sidebarContent').toggleClass('hidden');
+      });
+
+      $('#aboutPage').toggleClass('hidden');
+
+      $('div.about').click(function(){
+        $('#aboutPage').toggleClass('hidden');
+      });
+
+      $('div.aboutclose').click(function(){
+        $('#aboutPage').toggleClass('hidden');
+      });
+
+    //}
+
+    // HERE HOW DO I MAKE THAT THIS HAPPENS WHEN YOU CLICK ON WINDOWS BUT NEVER WHEN YOU CLICK INSIDE THE DIV OF THE COMMENT?
+    function comment(e){
+      if(e.target.id != "comment" && e.target.id != "submit" ){
+
+
+        canvas = document.getElementById("page" + $('#pageNumber').val());
+        context = canvas.getContext("2d");
+        var pos = getMousePos(canvas, e);
+        posx = pos.x;
+        posy = pos.y;
+        //alert("change")
+
+        $(".comment-respond").prependTo($('.page[data-page-number="' + $('#pageNumber').val()+ '"]'));
+        $(".comment-respond").css({top: posy, left: posx , position:'absolute', 'z-index':"100"});
+        $("#new_post_data").val(posx + ',' + posy + ',' + $('#pageNumber').val())
+      }
+    }
+
+    /* GUIDA ADDED THIS - KEEP */
+
+    function getSelectionText() {
+    var text = "";
+    if (window.getSelection) {
+        text = window.getSelection().toString();
+      } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+      }
+      return documentselection();
+    }
+
+    function getMousePos(canvas, evt) {
+      var rect = canvas.getBoundingClientRect();
+      return {
+        x: evt.clientX - rect.left,
+        y: evt.clientY - rect.top
+      };
+    }
+
+
+}
+
+    }, true);
+
+});
+
+</script>

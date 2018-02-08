@@ -124,14 +124,19 @@ function gulptheme_scripts() {
 	wp_enqueue_style( 'gulptheme-max', get_template_directory_uri() . '/css/max.css');
 
 	 wp_enqueue_script('jquery-ui-core');
+<<<<<<< HEAD
 
 
+=======
+	
+	 wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );	
+>>>>>>> 0783411dfba9199b824b28a107d698f75308617c
 
 	wp_enqueue_script( 'gulptheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'gulptheme-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
-	wp_enqueue_script( 'gulptheme-highlight', get_template_directory_uri() . '/js/jquery.highlight-4.js', array(), '20151215', true );
+	wp_enqueue_script( 'gulptheme-print', get_template_directory_uri() . '/js/print.min.js', array(), '20151215', true );
 
 	//* new high light *
 
@@ -240,4 +245,12 @@ if(function_exists("register_field_group"))
 		),
 		'menu_order' => 0,
 	));
+}
+
+
+
+add_filter('comment_post_redirect', 'redirect_after_comment');
+function redirect_after_comment($location)
+{
+return $_SERVER["HTTP_REFERER"];
 }

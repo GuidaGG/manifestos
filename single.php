@@ -417,7 +417,7 @@
     endwhile; // End of the loop.
     ?>
 
-<button id="execute">Run</button>
+<button id="print_button" onclick="printJS('http://localhost/mani/wp-content/uploads/2018/02/biotic_explorers_manifesto.pdf')" >PRINT THIS PDF</button>
 
 
 <script>
@@ -446,18 +446,18 @@ jQuery(document).ready(function($) {
     highlighter.addClassApplier(applier);
 
 
-/* loading selections */
-/*var $rang = [];
+/* print each manifesto */
+
+$('#print_button').click(function(){
+      var doc = document.getElementById('pdfDocument');
+
+   
+        doc.print();
+
+});
+/* print each manifesto */
 
 
-$rang.push({start: 4019, end: 4039});
-$rang.push({start: 3921, end: 3952});
-var arrayLength = $rang.length;
-    for (var i = 0; i < arrayLength; i++) {
-     console.log($rang[i]);
-     highlighter.highlightoldSelection("highlight", "", $rang[0] );
-}*/
-//highlighter.highlightoldSelection("highlight", "", $rang[1]);
 
 /* LOAD COMENTS AND HIGHLIGHTS */
 $( ".comment_positioned" ).each(function( index ) {
@@ -509,7 +509,7 @@ $( ".comment_positioned" ).each(function( index ) {
       });
 
 
-//document.getElementById("viewer").addEventListener('mouseup', comment, false);
+document.getElementById("viewer").addEventListener('mouseup', comment, false);
 
       $('#marks').mouseover(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
