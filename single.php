@@ -18,23 +18,21 @@
 
        $file = get_field('pdf'); ?>
 
-
+<div id="startScreen">
+  <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
+</div>
 
 <div id="aboutPage">
-  <div id="din">
-
     <div class="aboutclose">✕</div>
-    <p>17 MANIFESTOS<br><br>
+    <p>NEVERTHELESS. 17 MANIFESTOS<br><br>
       Edited by Andrea Sick <br>
       Design concept and layout: <a href="https://www.esthersophie.de/" target="_blank">Sarah Käsmayr</a> and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
       Website: <a href="http://www.maximiliankiepe.de" target="_blank">Maximilian Kiepe</a> and Guida Ribeiro <br>
       © 2018 by the authors and Textem Verlag, Hamburg<br>
       ISBN: 978-3-86485-190-2<br><br>
 
-      Distributed by Textem Verlag<br>
-      <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
+      Distributed by <a href="http://www.textem-verlag.de" target="_blank">Textem Verlag</a>
     </p>
-  </div>
   <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
 
 </div>
@@ -187,7 +185,11 @@
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
                   <div class="arrow_left">←</div><p>SIDEBAR</p>
+                <!-- <p>17 MANIFESTOS</p> -->
                 </button>
+                <!-- <div class="home_">
+                  <p>17 MANIFESTOS</p>
+                </div> -->
                 <!-- <button id="highlights" class="toolbarButton highlights hiddenMediumView">
                   <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
                 </button> -->
@@ -451,7 +453,7 @@ jQuery(document).ready(function($) {
 $('#print_button').click(function(){
       var doc = document.getElementById('pdfDocument');
 
-   
+
         doc.print();
 
 });
@@ -602,12 +604,24 @@ $('#sidebarToggle').click(function(){
         // $(this).find('.dot').toggleClass('fillm');
         if ($(this).hasClass('pause')) {
           $(this).find('.play').html("❘ ❘");
-          $(this).find('.play').css('vertical-align','middle');
-          $(this).find('p').html('PAUSE AUDIOFILE')
+          $(this).find('.play').css({
+            verticalAlign: 'middle',
+            color: '#00aa00',
+          });
+          $(this).find('p').html('PAUSE AUDIOFILE');
+          $(this).find('p').css({
+            color: '#00aa00',
+          });
         } else {
           $(this).find('.play').html("▷");
-          $(this).find('.play').css('vertical-align','top');
-          $(this).find('p').html('PLAY AUDIOFILE')
+          $(this).find('.play').css({
+            verticalAlign: 'top',
+            color: 'black',
+          });
+          $(this).find('p').html('PLAY AUDIOFILE');
+          $(this).find('p').css({
+            color: 'black',
+          });
         }
       });
 
@@ -674,6 +688,7 @@ $('#sidebarToggle').click(function(){
       };
     }
 
+    $('#startScreen').fadeOut(300);
 
 }
 

@@ -124,7 +124,7 @@ function gulptheme_scripts() {
 	wp_enqueue_style( 'gulptheme-max', get_template_directory_uri() . '/css/max.css');
 
 	 wp_enqueue_script('jquery-ui-core');
-	
+
 	 wp_enqueue_script( 'main', get_template_directory_uri() . '/js/main.js', array(), '20151215', true );
 
 	wp_enqueue_script( 'gulptheme-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
@@ -183,7 +183,7 @@ add_action( 'comment_form_logged_in_after', 'additional_fields' );
 function additional_fields($fields) {
 
 
-echo '<input id="decline" type="button" value="?"></input><input type="hidden" id="new_post_data" name="new_post_data" value="THIS IS ALSO META"><input id="new_post_highlight" name="new_post_highlight" value="THIS IS ALSO META">';
+echo '<input id="decline" type="button" value="✕"></input><input type="hidden" id="new_post_data" name="new_post_data" value="THIS IS ALSO META"><input id="new_post_highlight" name="new_post_highlight" value="THIS IS ALSO META">';
 
 
 }
