@@ -18,40 +18,27 @@
 
        $file = get_field('pdf'); ?>
 
-
+<div id="startScreen">
+  <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
+</div>
 
 <div id="aboutPage">
-  <div id="din">
-
     <div class="aboutclose">✕</div>
-    <p>17 MANIFESTOS<br><br>
+    <p>NEVERTHELESS. 17 MANIFESTOS<br><br>
       Edited by Andrea Sick <br>
       Design concept and layout: <a href="https://www.esthersophie.de/" target="_blank">Sarah Käsmayr</a> and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
       Website: <a href="http://www.maximiliankiepe.de" target="_blank">Maximilian Kiepe</a> and Guida Ribeiro <br>
       © 2018 by the authors and Textem Verlag, Hamburg<br>
       ISBN: 978-3-86485-190-2<br><br>
 
-      Distributed by Textem Verlag<br>
-      <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
+      Distributed by <a href="http://www.textem-verlag.de" target="_blank">Textem Verlag</a>
     </p>
-  </div>
   <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
 
 </div>
 
 <div id="infoSection" onclick="printJS('http://localhost/mani/wp-content/uploads/2018/02/biotic_explorers_manifesto.pdf')">
- 
-  <!-- <div class="sec">
-    <div class="c">©</div><p> GUIDA RIBEIRO — RAW MANIFESTO</p><br>
-  </div>
-  <div class="sec">
-    <div class="square"></div><p> PRINT RAW MANIFESTO</p><br>
-  </div>
-  <div class="sec">
-    <div class="play">►</div><p> PLAY AUDIOFILE</p>
-    <div class="play">❙❙</div><p> PAUSE AUDIOFILE</p>
-  </div>
-  </p> -->
+
 </div>
 
 
@@ -207,7 +194,11 @@
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
                   <div class="arrow_left">←</div><p>SIDEBAR</p>
+                <!-- <p>17 MANIFESTOS</p> -->
                 </button>
+                <!-- <div class="home_">
+                  <p>17 MANIFESTOS</p>
+                </div> -->
                 <!-- <button id="highlights" class="toolbarButton highlights hiddenMediumView">
                   <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
                 </button> -->
@@ -251,11 +242,16 @@
                   <div class="dot"></div><p>COMMENT</p>
                 </button>
 
-                <audio  id="audio" controls >
-              
-                  <source id="audio_source" src="http://localhost/mani/wp-content/uploads/2018/02/raw.mp3" type="audio/mpeg">
-            
+
+                <button id="play" class="toolbarButton hiddenMediumView">
+                  <div class="play">▷</div><p>PLAY AUDIOFILE</p>
+                </button>
+
+                <audio id="audio" controls>
+                  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+
                 </audio>
+
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
                   <div class="square"></div><p>PRINT ALL</p>
                 </button>
@@ -472,7 +468,7 @@ jQuery(document).ready(function($) {
 $('#print_button').click(function(){
       var doc = document.getElementById('pdfDocument');
 
-   
+
         doc.print();
 
 });
@@ -535,11 +531,13 @@ document.getElementById("viewer").addEventListener('mouseup', comment, false);
 
       $('#marks').mouseover(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
+        // $(this).find('p').css("color","#ffeb32");
       });
 
 
       $('#marks').mouseout(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
+        // $(this).find('p').css("color","black");
       });
 
       $('#print').mouseover(function(){
@@ -603,9 +601,9 @@ $('#sidebarToggle').click(function(){
         $('.commentdot').toggleClass('hidden');
         $(this).find('.dot').toggleClass('fillm');
         if ($(this).find('.dot').hasClass('fillm')) {
-          // $(this).find('p').html("HIDE MARKS");
+          $(this).find('p').css("color","#ffeb32");
         } else {
-          // $(this).find('p').html("SHOW MARKS");
+          $(this).find('p').css("color","black");
           $(".comment_positioned").each(function(){
             if(!$(this).hasClass('hidden')){
               $(this).toggleClass('hidden')
@@ -614,17 +612,55 @@ $('#sidebarToggle').click(function(){
         }
       });
 
+      $('#play').click(function() {
+        if ($('#play').hasClass('pause')) {
+          $('#audio').trigger('pause')
+        } else {
+          $('#audio').trigger('play')
+        }
+      });
+
       $('#play').click(function(){
         $('#play').toggleClass('pause');
         // $(this).find('.dot').toggleClass('fillm');
         if ($(this).hasClass('pause')) {
           $(this).find('.play').html("❘ ❘");
-          $(this).find('.play').css('vertical-align','middle');
-          $(this).find('p').html('PAUSE AUDIOFILE')
+          $(this).find('.play').css({
+            verticalAlign: 'middle',
+            color: '#00aa00',
+          });
+          $(this).find('p').html('PAUSE AUDIOFILE');
+          $(this).find('p').css({
+            color: '#00aa00',
+          });
         } else {
           $(this).find('.play').html("▷");
-          $(this).find('.play').css('vertical-align','top');
-          $(this).find('p').html('PLAY AUDIOFILE')
+          $(this).find('.play').css({
+            verticalAlign: 'top',
+            color: 'black',
+          });
+          $(this).find('p').html('PLAY AUDIOFILE');
+          $(this).find('p').css({
+            color: 'black',
+          });
+        }
+      });
+
+      $('#play').mouseover(function(){
+        $(this).find('.play').css({
+          color: '#00aa00',
+        });
+      });
+
+      $('#play').mouseout(function(){
+        if ($(this).hasClass('pause')) {
+          $(this).find('.play').css({
+            color: '#00aa00',
+          });
+        } else {
+          $(this).find('.play').css({
+            color: 'black',
+          });
         }
       });
 
@@ -636,10 +672,10 @@ $('#sidebarToggle').click(function(){
 
       $('#sidebarContent').toggleClass('hidden');
 
-      $('#sidebarToggle').click(function(){
-        $('.arrow_left').toggleClass('arrow_switch');
-        $('#sidebarContent').toggleClass('hidden');
-      });
+      // $('#sidebarToggle').click(function(){
+      //   $('.arrow_left').toggleClass('arrow_switch');
+      //   $('#sidebarContent').toggleClass('hidden');
+      // });
 
       // $('#aboutPage').toggleClass('hidden');
 
@@ -691,6 +727,7 @@ $('#sidebarToggle').click(function(){
       };
     }
 
+    $('#startScreen').fadeOut(300);
 
 }
 

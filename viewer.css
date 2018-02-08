@@ -1219,6 +1219,8 @@ html[dir="rtl"] #viewOutline.toolbarButton::before {
   height: 9px;
   width: 9px;
   border-radius: 50%;
+
+  display: none;
 }
 html[dir='ltr'] .toolbarButton.pdfSidebarNotification::after {
   left: 17px;

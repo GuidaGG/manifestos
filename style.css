@@ -37,7 +37,7 @@ body .pdfViewer .page div.comment-respond textarea {
   height: 80px;
   border: 1px solid #dedede;
 
-    -webkit-box-shadow: none;
-    -moz-box-shadow: none;
-    box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
 }
