@@ -430,3 +430,13 @@ label{
 
     }
 }
+
+/*guida dont delete*/
+#thumbnailView_manifestos{
+    position: absolute;
+    width: 140px;
+    top: 0;
+    bottom: 0;
+    padding: 30px 14px 0;
+    overflow: auto;
+  }

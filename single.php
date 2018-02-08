@@ -38,7 +38,7 @@
   <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
 
 </div>
- <input class="pdfDocument" id="pdf_title">
+
 <div id="infoSection" onclick="printJS('http://localhost/mani/wp-content/uploads/2018/02/biotic_explorers_manifesto.pdf')">
  
   <!-- <div class="sec">
@@ -73,7 +73,26 @@
           </div>
         </div>
         <div id="sidebarContent">
-          <div id="thumbnailView">
+
+        <div id="thumbnailView" style="display: none"> </div>
+
+          <div id="thumbnailView_manifestos">
+             <a href="#page=4" title="Page 1" style="display: inline;">
+                <div class="thumbnail" data-page-number="4" data-loaded="true">
+                    <div class="thumbnailSelectionRing" style="width: 100px; height: 71px;">
+                        <img id="thumbnail1" class="thumbnailImage" src="http://localhost/mani/wp-content/uploads/2018/02/undecided.png" aria-label="Thumbnail of Page 1" style="width: 98px; height: 69px;">
+                      </div>
+                  </div>
+              </a>
+
+               <a href="#page=6" title="Page 1" style="display: inline;">
+                <div class="thumbnail" data-page-number="4" data-loaded="true">
+                    <div class="thumbnailSelectionRing" style="width: 100px; height: 71px;">
+                        <img id="thumbnail1" class="thumbnailImage" src="http://localhost/mani/wp-content/uploads/2018/02/raw.png" aria-label="Thumbnail of Page 1" style="width: 98px; height: 69px;">
+                      </div>
+                  </div>
+              </a>
+
           </div>
           <div id="outlineView" class="hidden">
           </div>
@@ -232,10 +251,10 @@
                   <div class="dot"></div><p>COMMENT</p>
                 </button>
 
-                <audio controls>
-                  <source src="horse.ogg" type="audio/ogg">
-                  <source src="horse.mp3" type="audio/mpeg">
-                Your browser does not support the audio element.
+                <audio  id="audio" controls >
+              
+                  <source id="audio_source" src="http://localhost/mani/wp-content/uploads/2018/02/raw.mp3" type="audio/mpeg">
+            
                 </audio>
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
                   <div class="square"></div><p>PRINT ALL</p>
@@ -435,7 +454,7 @@ jQuery(document).ready(function($) {
 
 
 
-    $array_highlights = [];
+   
     $count = 0;
 
 
@@ -465,12 +484,13 @@ $('#print_button').click(function(){
 $( ".comment_positioned" ).each(function( index ) {
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
 
-  var high =  $(this).find('.c_highlight').data('attr');
+  /* this can be removed */
+ /* var high =  $(this).find('.c_highlight').data('attr');
 
     if(high){
       // console.log(high);
        // highlighter.deserialize(high);
-    }
+    }*/
 });
 
 
@@ -531,11 +551,7 @@ document.getElementById("viewer").addEventListener('mouseup', comment, false);
       });
 
 
-var oldsel = [];
-oldsel .push({start: 10, end: 80});
-
-
-
+/*
 var myFunction = function() {
 
   var page = "page" + $('#pageNumber').val() ;
@@ -546,20 +562,19 @@ var myFunction = function() {
     if(newsel[0].end - newsel[0].start > 0){
     $('#new_post_highlight').val(newsel );*/
 
-
-      serial = highlighter.serialize()
+    /*  serial = highlighter.serialize()
       console.log("serial");
      $('#new_post_highlight').val(serial );
 
 
-    };
-//}
-    var classname = document.getElementsByClassName("textLayer");
+    };*/
+//}*/
+  /*  var classname = document.getElementsByClassName("textLayer");
 
       for (var i = 0; i < classname.length; i++) {
         classname[i].addEventListener('mouseup', myFunction, false);
       }
-
+*/
 
 $('input#decline').click(function(){
   $('#respond').css({

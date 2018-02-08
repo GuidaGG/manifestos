@@ -104,6 +104,6 @@ if ( post_password_required() ) {
 
 	comment_form(array('title_reply' => "Leave a Commentary",
 		'label_submit' => 'save',
-		'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( '', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>'));
+		'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( 'Place a comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>'));
 	?>
 </div><!-- #comments -->
