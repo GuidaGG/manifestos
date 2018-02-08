@@ -474,27 +474,30 @@
                 }
 
                 // Store the existing selection as character ranges
+
+
                 var serializedSelection = converter.serializeSelection(selection, containerElement);
 
                 // Create an array of selected character ranges
                 var selCharRanges = [];
-                var savingCharRanges = []
+               /* var savingCharRanges = []*/
                 forEach(serializedSelection, function(rangeInfo) {
-                       
+                
+                    //console.log(CharacterRange.fromCharacterRange(rangeInfo.characterRange) );
                     selCharRanges.push( CharacterRange.fromCharacterRange(rangeInfo.characterRange) );
 
-                    savingCharRanges.push(CharacterRange.fromCharacterRange(rangeInfo.characterRange));
+                    savingCharRanges = CharacterRange.fromCharacterRange(rangeInfo.characterRange);
 
                 });
 
                  
                 //console.log("/* HIGHLIGHT NEW */");
-                    console.log(selCharRanges);
-                var newHighlights = this.highlightCharacterRanges(className, selCharRanges, {
+                   
+                 var newHighlights = this.highlightCharacterRanges(className, selCharRanges, {
                     containerElementId: containerElementId,
                     exclusive: exclusive
                 });
-
+                
                 // Restore selection
                 converter.restoreSelection(selection, serializedSelection, containerElement);
 
@@ -533,11 +536,15 @@
 
                 // Create an array of selected character ranges
                var selCharRanges = [];
-             /*
-                    selCharRanges.push( CharacterRange.fromCharacterRange(range ));
-               */
-               console.log(range);
-                var newHighlights = this.highlightCharacterRanges(className, range, {
+
+              
+                       
+                    selCharRanges.push( range );
+
+                    //selCharRanges.push( CharacterRange.fromCharacterRange(range ));
+               
+            
+                var newHighlights = this.highlightCharacterRanges(className, selCharRanges, {
                     containerElementId: containerElementId,
                     exclusive: exclusive
                 });
@@ -633,10 +640,11 @@
                     parts = serializedHighlights[i].split("$");
                     characterRange = new CharacterRange(+parts[0], +parts[1]);
                     containerElementId = parts[4] || null;
-
+               
                     // Convert to the current Highlighter's type, if different from the serialization type
                     if (convertType) {
                         containerElement = getContainerElement(this.doc, containerElementId);
+                        console.log(this.doc);
                         characterRange = this.converter.rangeToCharacterRange(
                             serializationConverter.characterRangeToRange(this.doc, characterRange, containerElement),
                             containerElement

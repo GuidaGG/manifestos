@@ -19,7 +19,7 @@
        $file = get_field('pdf'); ?>
 
 
-<div id="aboutPage">
+<div id="aboutPage" style="display: none">
     <div class="aboutclose">✕</div>
   <p>17 MANIFESTOS<br><br>
       Edited by Andrea Sick <br>
@@ -32,6 +32,7 @@
       <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
     </p>
 </div>
+
 
    <input id="url" type="hidden" value="<?php echo $file['url']; ?>">
     <div id="outerContainer">
@@ -285,7 +286,9 @@
         </menu>
 
         <div id="viewerContainer" tabindex="0">
-          <div id="viewer" class="pdfViewer"></div>
+          <div id="viewer" class="pdfViewer">
+            
+          </div>
         </div>
 
         <div id="errorWrapper" hidden='true'>
@@ -415,7 +418,10 @@ $count = 0;
 
 
 /*initialize highliter */
-var applier = rangy.createClassApplier("highlight");
+var applier = rangy.createClassApplier("highlight", {
+                ignoreWhiteSpace: true,
+                tagNames: ["span", "a"]
+            });
 var highlighter = rangy.createHighlighter();
 highlighter.addClassApplier(applier);
 
@@ -437,46 +443,18 @@ var arrayLength = $rang.length;
 $( ".comment_positioned" ).each(function( index ) {
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
 
-  var high =  JSON.parse($(this).find('.c_highlight').data('attr'));
-
- console.log(high);
-   highlighter.highlightoldSelection("highlight", "", high[0] );    
-  /* for (var i = 0; i < arrayLength; i+=2) {
-
-                var data = {start: array[i], end: array[i+1]};
-             
-                $rang.push(data);
-               
-             
-       }
-          var arrayLength = $rang.length;
-          for (var i = 0; i < arrayLength; i++) {
-            console.log($rang[i]);
-          highlighter.highlightoldSelection("highlight", "", $rang[i] );
-          }
-*/
-    //}
-            /*  for (var i = 0; i < arrayLength; i++) {
-
-                var noquotes = myJsArray[i].replace(/['"]+/g, '');
-                  var nobrackets = noquotes.replace(/[\[\]']+/g, '');
-               //   var highlights = nobrackets.split(',');
-                var arrayLength = nobrackets.length;
-                  for (var i = 0; i < arrayLength; i++) {
-                    //  alert(nobrackets[i]);
-                      //Do something
-                  }
-              }*/
-         
-   /*   $highlights.each(function( index, value ) {
-        console.log("index: " + index + " | value: " + value);
-      });*/
+  var high =  $(this).find('.c_highlight').data('attr');
+ 
+    if(high){
+       console.log(high);
+       highlighter.deserialize(high);
+    }
 });
 
 
 
 $( ".commentdot" ).each(function( index ) {
-  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
+ $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
 });
 
 // $(".commentdot").show();
@@ -533,15 +511,18 @@ var new_selections = [];
 var classname = document.getElementsByClassName("textLayer");
 
 var oldsel = [];
-oldsel .push({start: 0, end: 0});
+oldsel .push({start: 10, end: 80});
+
+
+
 var myFunction = function() {
-    var newsel = highlighter.highlightSelection("highlight");
-   
-    if(newsel[0].end - newsel[0].start > 0){
-    $('#new_post_highlight').val(newsel );
+  var page = "page" + $('#pageNumber').val() ;
+   highlighter.highlightSelection("highlight");
 
-   }
+   serial = highlighter.serialize()
+     $('#new_post_highlight').val(serial );
 
+ 
 };
 
 
@@ -580,7 +561,7 @@ $('#sidebarToggle').click(function(){
 
 $('#aboutPage').toggleClass('hidden');
 $('div.about').click(function(){
-  console.log('mofukka');
+
   $('#aboutPage').toggleClass('hidden');
 });
 
@@ -632,7 +613,6 @@ function draw(e) {
     // context.fillRect(posx-2, posy-2, 4, 4);
 
 
-}
 
 }
 
