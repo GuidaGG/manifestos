@@ -19,11 +19,14 @@
        $file = get_field('pdf'); ?>
 
 
-<div id="aboutPage" style="display: none">
+
+<div id="aboutPage">
+  <div id="din">
+
     <div class="aboutclose">✕</div>
-  <p>17 MANIFESTOS<br><br>
+    <p>17 MANIFESTOS<br><br>
       Edited by Andrea Sick <br>
-      Design concept and layout: Sarah Käsmayr and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
+      Design concept and layout: <a href="https://www.esthersophie.de/" target="_blank">Sarah Käsmayr</a> and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
       Website: <a href="http://www.maximiliankiepe.de" target="_blank">Maximilian Kiepe</a> and Guida Ribeiro <br>
       © 2018 by the authors and Textem Verlag, Hamburg<br>
       ISBN: 978-3-86485-190-2<br><br>
@@ -31,6 +34,21 @@
       Distributed by Textem Verlag<br>
       <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
     </p>
+  </div>
+</div>
+<img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
+<div id="infoSection">
+  <div class="sec">
+    <div class="c">©</div><p> GUIDA RIBEIRO — RAW MANIFESTO</p><br>
+  </div>
+  <div class="sec">
+    <div class="square"></div><p> PRINT RAW MANIFESTO</p><br>
+  </div>
+  <div class="sec">
+    <div class="play">►</div><p> PLAY AUDIOFILE</p>
+    <div class="play">❙❙</div><p> PAUSE AUDIOFILE</p>
+  </div>
+  </p>
 </div>
 
 
@@ -63,9 +81,7 @@
 
       <div id="mainContainer">
 
-
-
-<!--
+      <!--
         <div class="reiter_wrapper">
           <div class="reiter active">
             <p>RAW MANIDFESTO</p>
@@ -76,11 +92,8 @@
           <div class="reiter">
             <p>BLABLABLA</p>
           </div>
-        </div> -->
-
-
-
-
+        </div>
+      -->
 
         <div class="findbar hidden doorHanger" id="findbar">
           <div id="findbarInputContainer">
@@ -446,10 +459,46 @@ $( ".comment_positioned" ).each(function( index ) {
   var high =  $(this).find('.c_highlight').data('attr');
  
     if(high){
-       console.log(high);
+      // console.log(high);
        highlighter.deserialize(high);
     }
 });
+  // var high =  JSON.parse($(this).find('.c_highlight').data('attr'));
+
+ // console.log(high);
+   // highlighter.highlightoldSelection("highlight", "", high[0] );
+  /* for (var i = 0; i < arrayLength; i+=2) {
+
+                var data = {start: array[i], end: array[i+1]};
+
+                $rang.push(data);
+
+
+       }
+          var arrayLength = $rang.length;
+          for (var i = 0; i < arrayLength; i++) {
+            console.log($rang[i]);
+          highlighter.highlightoldSelection("highlight", "", $rang[i] );
+          }
+*/
+    //}
+            /*  for (var i = 0; i < arrayLength; i++) {
+
+                var noquotes = myJsArray[i].replace(/['"]+/g, '');
+                  var nobrackets = noquotes.replace(/[\[\]']+/g, '');
+               //   var highlights = nobrackets.split(',');
+                var arrayLength = nobrackets.length;
+                  for (var i = 0; i < arrayLength; i++) {
+                    //  alert(nobrackets[i]);
+                      //Do something
+                  }
+              }*/
+
+   /*   $highlights.each(function( index, value ) {
+        console.log("index: " + index + " | value: " + value);
+      });*/
+
+//});
 
 
 
@@ -457,7 +506,7 @@ $( ".commentdot" ).each(function( index ) {
  $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
 });
 
-// $(".commentdot").show();
+ $(".commentdot").show();
 //
  $(".comment_positioned").toggleClass('hidden');
   $(".commentdot").toggleClass('hidden');
@@ -474,10 +523,10 @@ $('#highlights').mouseout(function(){
   $(this).find('.dot').toggleClass('hoverstateh');
 });
 
-$('.highlight').toggleClass('hidden');
+$('.highlight').toggleClass('unhidden');
 
 $('#highlights').click(function(){
-  $('.highlight').toggleClass('hidden');
+  $('.highlight').toggleClass('unhidden');
   $(this).find('.dot').toggleClass('fillh');
   if ($(this).find('.dot').hasClass('fillh')) {
       $(this).find('p').html("HIDE HIGHLIGHTS");
@@ -501,7 +550,7 @@ $('#print').mouseout(function(){
 });
 
 
-window.addEventListener('mousemove', draw, false);
+//window.addEventListener('mousemove', draw, false);
 document.getElementById("viewer").addEventListener('mouseup', comment, false);
 
 
@@ -516,15 +565,23 @@ oldsel .push({start: 10, end: 80});
 
 
 var myFunction = function() {
+
   var page = "page" + $('#pageNumber').val() ;
    highlighter.highlightSelection("highlight");
 
-   serial = highlighter.serialize()
+    /*var newsel = highlighter.highlightSelection("highlight");
+
+    if(newsel[0].end - newsel[0].start > 0){
+    $('#new_post_highlight').val(newsel );*/
+
+
+      serial = highlighter.serialize()
+      console.log("serial");
      $('#new_post_highlight').val(serial );
 
  
-};
-
+    };
+//}
 
 for (var i = 0; i < classname.length; i++) {
     classname[i].addEventListener('mouseup', myFunction, false);
@@ -571,55 +628,10 @@ $('div.aboutclose').click(function(){
 
 
 
-/* -------------------------------*/
-
-function createImageOnCanvas(imageId) {
-    //canvas.style.display = "block";
-    //document.getElementById("images").style.overflowY = "hidden";
-    //var img = new Image(300, 300);
-    //img.src = document.getElementById(imageId).src;
-    //context.drawImage(img, (0), (0)); //onload....
-}
-
-function draw(e) {
-
-
-/*   canvas = document.getElementById("page" + $('#pageNumber').val());
-   context = canvas.getContext("2d");
-    var pos = getMousePos(canvas, e);
-    posx = pos.x;
-    posy = pos.y;
-
-    context.fillStyle = "#000000";
-    context.fillRect(posx-2, posy-2, 4, 4);*/
-
-
-   // canvas = document.getElementById("page" + $('#pageNumber').val());
-   // context = canvas.getContext("2d");
-   //  var pos = getMousePos(canvas, e);
-   //  posx = pos.x;
-   //  posy = pos.y;
-   //
-   //  context.fillStyle = "#000000";
-   //  context.fillRect(posx-2, posy-2, 4, 4);
-
-  // canvas = document.getElementById("page" + $('#pageNumber').val());
-  //  context = canvas.getContext("2d");
-  //   var pos = getMousePos(canvas, e);
-  //   posx = pos.x;
-  //   posy = pos.y;
-
-    // context.fillStyle = "#000000";
-    // context.fillRect(posx-2, posy-2, 4, 4);
-
-
-
-}
-
-// HERE HOW DO I MAKE THAT THIS HAPPENS WHEN YOU CLICK ON WINDOWS BUT NEVER WHEN YOU CLICK INSIDE THE DIV OF THE COMMENT? 
+// HERE HOW DO I MAKE THAT THIS HAPPENS WHEN YOU CLICK ON WINDOWS BUT NEVER WHEN YOU CLICK INSIDE THE DIV OF THE COMMENT?
 function comment(e){
   if(e.target.id != "comment" && e.target.id != "submit" ){
-   
+
   canvas = document.getElementById("page" + $('#pageNumber').val());
    context = canvas.getContext("2d");
   var pos = getMousePos(canvas, e);
@@ -657,7 +669,9 @@ function getMousePos(canvas, evt) {
     };
 }
 
-      }
+
+}
+
     }, true);
 
 });
