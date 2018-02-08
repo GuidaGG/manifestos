@@ -609,8 +609,11 @@ function attachDOMEventsToEventBus(eventBus) {
   });
   eventBus.on('pagechange', function (evt) {
     var event = document.createEvent('UIEvents');
+
+
     event.initUIEvent('pagechange', true, true, window, 0);
     event.pageNumber = evt.pageNumber;
+        update_page_data(evt.pageNumber);
     evt.source.container.dispatchEvent(event);
   });
   eventBus.on('pagesinit', function (evt) {
@@ -895,12 +898,12 @@ var DISABLE_AUTO_FETCH_LOADING_BAR_TIMEOUT = 5000;
 function configure(PDFJS) {
   PDFJS.imageResourcesPath = './images/';
 
- // PDFJS.workerSrc = 'http://localhost/mani/build/pdf.worker.js';
- // PDFJS.cMapUrl = 'http://localhost/mani/wp-content/themes/gulp-theme/manifestos/cmaps/';
+ PDFJS.workerSrc = 'http://localhost/mani/build/pdf.worker.js';
+  PDFJS.cMapUrl = 'http://localhost/mani/wp-content/themes/gulp-theme/manifestos/cmaps/';
 
- PDFJS.workerSrc = 'http://localhost/manifestos2018/build/pdf.worker.js';
+ /*PDFJS.workerSrc = 'http://localhost/manifestos2018/build/pdf.worker.js';
  PDFJS.cMapUrl = 'http://localhost/manifestos2018/wp-content/themes/gulp-theme/manifestos/cmaps/';
-
+*/
   PDFJS.cMapPacked = true;
 }
 var DefaultExternalServices = {

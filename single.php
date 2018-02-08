@@ -36,7 +36,9 @@
   <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
 
 </div>
-<div id="infoSection">
+ <input class="pdfDocument" id="pdf_title">
+<div id="infoSection" onclick="printJS('http://localhost/mani/wp-content/uploads/2018/02/biotic_explorers_manifesto.pdf')">
+ 
   <!-- <div class="sec">
     <div class="c">©</div><p> GUIDA RIBEIRO — RAW MANIFESTO</p><br>
   </div>
@@ -48,7 +50,6 @@
     <div class="play">❙❙</div><p> PAUSE AUDIOFILE</p>
   </div>
   </p> -->
-  <p>PRINT RAW MANIFESTO</p>
 </div>
 
 
@@ -233,10 +234,11 @@
                   <div class="dot"></div><p>COMMENT</p>
                 </button>
 
-                <button id="play" class="toolbarButton hiddenMediumView">
-                  <div class="play">▷</div><p>PLAY AUDIOFILE</p>
-                </button>
-
+                <audio controls>
+                  <source src="horse.ogg" type="audio/ogg">
+                  <source src="horse.mp3" type="audio/mpeg">
+                Your browser does not support the audio element.
+                </audio>
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
                   <div class="square"></div><p>PRINT ALL</p>
                 </button>
@@ -419,7 +421,7 @@
     endwhile; // End of the loop.
     ?>
 
-<button id="print_button" onclick="printJS('http://localhost/mani/wp-content/uploads/2018/02/biotic_explorers_manifesto.pdf')" >PRINT THIS PDF</button>
+
 
 
 <script>
