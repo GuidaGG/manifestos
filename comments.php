@@ -56,22 +56,22 @@ if ( post_password_required() ) {
 
 		$comments = get_comments(array('post_id' => get_the_ID()));
 		?>
-	
-		<?php 
+
+		<?php
 				foreach($comments as $comment) :
 				?>
 
 
 
-					<?php $position = get_comment_meta($comment->comment_ID, 'position'); 
+					<?php $position = get_comment_meta($comment->comment_ID, 'position');
 
 
 
 						$positions = explode(",", $position[0]);
-						$highlights = get_comment_meta($comment->comment_ID, 'highlight'); 
+						$highlights = get_comment_meta($comment->comment_ID, 'highlight');
 
-						//$json_array = json_encode($highlights );	
-			
+						//$json_array = json_encode($highlights );
+
 
 					?>
 
@@ -85,7 +85,7 @@ if ( post_password_required() ) {
 							</div>
 
 						</div>
-						
+
 
    			<?php
 				endforeach;
@@ -104,6 +104,6 @@ if ( post_password_required() ) {
 
 	comment_form(array('title_reply' => "Leave a Commentary",
 		'label_submit' => 'save',
-		'comment_field' => '<p class="comment-form-comment"><label for="comment">' . _x( '', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>'));
+		'comment_field' => '<p>PLACE A COMMENT</p><input id="decline" type="button" value="✕"></input>' . _x( '', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea></p>'));
 	?>
 </div><!-- #comments -->

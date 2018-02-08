@@ -115,8 +115,8 @@ input#decline{
   float: right;
   display: inline-block;
   vertical-align: top;
-  right: 20px;
-  top: 9px;
+  right: 0px;
+  top: -16px;
   cursor: pointer;
   text-align: center;
   z-index: 300;
@@ -133,15 +133,17 @@ p.comment-notes{
   display: none;
 }
 .commentdot{
-  background: #fff06e;
-  background: #ffeb32;
+  background: #f9f578;
   width: 16px;
   height: 16px;
   border-radius: 16px;
   position: absolute;
   z-index: 90;
   cursor: pointer;
-  box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);;
+  box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.1);;
+}
+.comment-notes p:first-child{
+  display: inline-block !important;
 }
 .dot{
   border: 1px solid;
@@ -164,7 +166,7 @@ body .comment_positioned {
   position: absolute;
   display: block;
   background-color: lightyellow;
-  /* border: 1px solid #ffeb32; */
+  /* border: 1px solid #f9f578; */
   padding: 12px;
   box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
   z-index: 90;
@@ -225,18 +227,18 @@ label{
   display: block;
 }
 .fillh{
-  background-color: #ffeb32;
-  border-color: #ffeb32;
+  background-color: #f9f578;
+  border-color: #f9f578;
 }
 .hoverstateh{
-  border-color: #ffeb32;
+  border-color: #f9f578;
 }
 .fillm{
-  background-color: #ffeb32;
-  border-color: #ffeb32;
+  background-color: #f9f578;
+  border-color: #f9f578;
 }
 .hoverstatem{
-  border-color: #ffeb32;
+  border-color: #f9f578;
 }
 .hoverstatep{
   background-color: white;
@@ -305,6 +307,9 @@ label{
   -webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
+#audio{
+  display: none;
+}
 #download{
   margin-right: 20px !important;
 }
@@ -319,8 +324,9 @@ label{
   font-size: 16px;
   vertical-align: top;
 }
-#play:hover{
-  color: #00aa00;
+
+#print{
+  display: none;
 }
 #highlighttool, #marktool{
   border: 1px solid black;
@@ -333,8 +339,8 @@ label{
   width: 110px;
 }
 #highlighttool:hover{
-  color:  light#ffeb32;
-  border-color: light#ffeb32;
+  color:  light#f9f578;
+  border-color: light#f9f578;
 }
 #marktool:hover{
   color:  #0051ff;
@@ -373,16 +379,17 @@ label{
 #infoSection{
   right: 20px;
   bottom: 20px;
-  /* color: #fff06e; */
+  /* color: #f9f578; */
   position: fixed;
   z-index: 260;
 }
 #infoSection p{
-  color: #004bff;
+  color: #544bff;
   font-size: 32px;
   display: inline-block;
   text-rendering: auto;
   -webkit-font-smoothing: none;
+  text-transform: uppercase;
 
   /* text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
   /* text-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); */
