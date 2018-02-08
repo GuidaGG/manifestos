@@ -898,11 +898,11 @@ var DISABLE_AUTO_FETCH_LOADING_BAR_TIMEOUT = 5000;
 function configure(PDFJS) {
   PDFJS.imageResourcesPath = './images/';
 
-  PDFJS.workerSrc = 'http://localhost/mani/build/pdf.worker.js';
-  PDFJS.cMapUrl = 'http://localhost/mani/wp-content/themes/gulp-theme/manifestos/cmaps/';
+  // PDFJS.workerSrc = 'http://localhost/mani/build/pdf.worker.js';
+  // PDFJS.cMapUrl = 'http://localhost/mani/wp-content/themes/gulp-theme/manifestos/cmaps/';
 
-//PDFJS.workerSrc = 'http://localhost/manifestos2018/build/pdf.worker.js';
-//PDFJS.cMapUrl = 'http://localhost/manifestos2018/wp-content/themes/gulp-theme/manifestos/cmaps/';
+PDFJS.workerSrc = 'http://localhost/manifestos2018/build/pdf.worker.js';
+PDFJS.cMapUrl = 'http://localhost/manifestos2018/wp-content/themes/gulp-theme/manifestos/cmaps/';
 
   PDFJS.cMapPacked = true;
 }

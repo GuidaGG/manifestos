@@ -41,7 +41,7 @@ html, body{
   box-shadow: 0px;
 }
 button{
-  margin: 8px 10px 8px 20px !important;
+  margin: 8px 10px 0px 20px !important;
 }
 button p {
   display: inline-block;
