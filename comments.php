@@ -61,7 +61,7 @@ if ( post_password_required() ) {
 				foreach($comments as $comment) :
 				?>
 
-
+					<?php if(wp_get_comment_status( $comment->comment_ID) == 'approved')): ?>
 
 					<?php $position = get_comment_meta($comment->comment_ID, 'position');
 
@@ -88,6 +88,7 @@ if ( post_password_required() ) {
 
 
    			<?php
+   			endif;
 				endforeach;
 		?>
 		<!-- .comment-list -->

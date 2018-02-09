@@ -1,38 +1,3 @@
-jQuery(document).ready(function($) {
-
-    document.addEventListener('textlayerrendered', function (e) {
-      if (e.detail.pageNumber === PDFViewerApplication.page) {
-          console.log('hello');
-     // $('.thumbnailImage').hide();   	
-    
-
-    $('#thumbnailView a').hide();
-	$('a[href="#page=1"]').show();
-	$('a[href="#page=4"]').show();
-	$('a[href="#page=6"]').show();
-    $('a[href="#page=8"]').show();
-    $('a[href="#page=12"]').show();
-    $('a[href="#page=14"]').show();
-    $('a[href="#page=16"]').show();
-    $('a[href="#page=20"]').show();
-    $('a[href="#page=35"]').show();
-    $('a[href="#page=39"]').show(); 
-    $('a[href="#page=53"]').show(); 
-    $('a[href="#page=55"]').show(); 
-    $('a[href="#page=59"]').show(); 
-    $('a[href="#page=61"]').show(); 
-    $('a[href="#page=67"]').show(); 
-    $('a[href="#page=69"]').show(); 
-    $('a[href="#page=75"]').show(); 
-    $('a[href="#page=77"]').show(); 
- 	$('a[href="#page=81"]').show(); 
-     	
-
- };
-
-    }, true);
-
-});
 
 
 

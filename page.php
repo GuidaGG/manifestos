@@ -16,7 +16,7 @@ get_header(); ?>
 
 
 			<?php
-			$post = get_post( 16 ); 
+			$post = get_post(7); 
 			
 
 				get_template_part( 'template-parts/content' );

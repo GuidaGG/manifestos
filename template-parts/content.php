@@ -18,36 +18,27 @@
        $file = get_field('pdf', $post->ID); ?>
       
 
+<div id="startScreen">
+  <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
+</div>
 
-<div id="aboutPage" style="display: none">
-  <div id="din">
-
+<div id="aboutPage">
     <div class="aboutclose">✕</div>
-    <p>17 MANIFESTOS<br><br>
+    <p>NEVERTHELESS. 17 MANIFESTOS<br><br>
       Edited by Andrea Sick <br>
       Design concept and layout: <a href="https://www.esthersophie.de/" target="_blank">Sarah Käsmayr</a> and <a href="http://cassiavila.com/" target="_blank"> Cássia Vila</a><br>
       Website: <a href="http://www.maximiliankiepe.de" target="_blank">Maximilian Kiepe</a> and Guida Ribeiro <br>
       © 2018 by the authors and Textem Verlag, Hamburg<br>
       ISBN: 978-3-86485-190-2<br><br>
 
-      Distributed by Textem Verlag<br>
-      <a href="http://www.textem-verlag.de" target="_blank">www.textem-verlag.de</a>
+      Distributed by <a href="http://www.textem-verlag.de" target="_blank">Textem Verlag</a>
     </p>
-  </div>
+  <img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
+
 </div>
-<img class="loading" src="<?php bloginfo('stylesheet_directory'); ?>/images/loading-icon.gif">
-<div id="infoSection">
-  <div class="sec">
-    <div class="c">©</div><p> GUIDA RIBEIRO — RAW MANIFESTO</p><br>
-  </div>
-  <div class="sec">
-    <div class="square"></div><p> PRINT RAW MANIFESTO</p><br>
-  </div>
-  <div class="sec">
-    <div class="play">►</div><p> PLAY AUDIOFILE</p>
-    <div class="play">❙❙</div><p> PAUSE AUDIOFILE</p>
-  </div>
-  </p>
+
+<div id="infoSection" onclick="printJS('http://localhost/mani/wp-content/uploads/2018/02/biotic_explorers_manifesto.pdf')">
+
 </div>
 
 
@@ -69,7 +60,26 @@
           </div>
         </div>
         <div id="sidebarContent">
-          <div id="thumbnailView">
+
+        <div id="thumbnailView" style="display: none"> </div>
+
+          <div id="thumbnailView_manifestos">
+             <a href="#page=4" title="Page 1" style="display: inline;">
+                <div class="thumbnail" data-page-number="4" data-loaded="true">
+                    <div class="thumbnailSelectionRing" style="width: 100px; height: 71px;">
+                        <img id="thumbnail1" class="thumbnailImage" src="http://localhost/mani/wp-content/uploads/2018/02/undecided.png" aria-label="Thumbnail of Page 1" style="width: 98px; height: 69px;">
+                      </div>
+                  </div>
+              </a>
+
+               <a href="#page=6" title="Page 1" style="display: inline;">
+                <div class="thumbnail" data-page-number="4" data-loaded="true">
+                    <div class="thumbnailSelectionRing" style="width: 100px; height: 71px;">
+                        <img id="thumbnail1" class="thumbnailImage" src="http://localhost/mani/wp-content/uploads/2018/02/raw.png" aria-label="Thumbnail of Page 1" style="width: 98px; height: 69px;">
+                      </div>
+                  </div>
+              </a>
+
           </div>
           <div id="outlineView" class="hidden">
           </div>
@@ -184,14 +194,15 @@
               <div id="toolbarViewerLeft">
                 <button id="sidebarToggle" class="toolbarButton" title="Toggle Sidebar" tabindex="11" data-l10n-id="toggle_sidebar">
                   <div class="arrow_left">←</div><p>SIDEBAR</p>
+                <!-- <p>17 MANIFESTOS</p> -->
                 </button>
-                <button id="highlights" class="toolbarButton highlights hiddenMediumView">
+                <!-- <div class="home_">
+                  <p>17 MANIFESTOS</p>
+                </div> -->
+                <!-- <button id="highlights" class="toolbarButton highlights hiddenMediumView">
                   <div class="dot"></div><p>SHOW HIGHLIGHTS</p>
-                </button>
+                </button> -->
 
-                <button id="marks" class="toolbarButton marks hiddenMediumView">
-                  <div class="dot"></div><p>SHOW MARKS</p>
-                </button>
                 <div class="toolbarButtonSpacer"></div>
                 <button id="viewFind" class="toolbarButton" title="Find in Document" tabindex="12" data-l10n-id="findbar">
                   <span data-l10n-id="findbar_label">Find</span>
@@ -218,18 +229,31 @@
                 </button>
 
 
-                <button id="highlighttool" class="toolbarButton highlighttool hiddenMediumView" >
+                <!-- <button id="highlighttool" class="toolbarButton highlighttool hiddenMediumView" >
                   <div class="highlighttool"></div><p>HIGHLIGHT</p>
                 </button>
 
 
                 <button id="marktool" class="toolbarButton marktool hiddenMediumView">
                   <div class="marktool"></div><p>COMMENT</p>
+                </button> -->
+
+                <button id="marks" class="toolbarButton marks hiddenMediumView">
+                  <div class="dot"></div><p>COMMENT</p>
                 </button>
 
 
+                <button id="play" class="toolbarButton hiddenMediumView">
+                  <div class="play">▷</div><p>PLAY AUDIOFILE</p>
+                </button>
+
+                <audio id="audio" controls>
+                  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+
+                </audio>
+
                 <button id="print" class="toolbarButton print hiddenMediumView" title="Print" tabindex="33" data-l10n-id="print">
-                  <div class="square"></div><p>PRINT</p>
+                  <div class="square"></div><p>PRINT ALL</p>
                 </button>
 
                 <button id="download" class="toolbarButton download hiddenMediumView" title="Download" tabindex="34" data-l10n-id="download">
@@ -299,7 +323,7 @@
 
         <div id="viewerContainer" tabindex="0">
           <div id="viewer" class="pdfViewer">
-            
+
           </div>
         </div>
 
@@ -401,6 +425,7 @@
 
     </div> <!-- outerContainer -->
     <div id="printContainer"></div>
+
 <script>
 jQuery(document).ready(function($) {
 
@@ -414,7 +439,7 @@ jQuery(document).ready(function($) {
 
 
 
-    $array_highlights = [];
+   
     $count = 0;
 
 
@@ -432,7 +457,7 @@ jQuery(document).ready(function($) {
 $('#print_button').click(function(){
       var doc = document.getElementById('pdfDocument');
 
-   
+
         doc.print();
 
 });
@@ -444,15 +469,16 @@ $('#print_button').click(function(){
 $( ".comment_positioned" ).each(function( index ) {
   $(this).prependTo($('.page[data-page-number="' + $( this ).data('page')+ '"]'));
 
-  var high =  $(this).find('.c_highlight').data('attr');
- 
+  /* this can be removed */
+ /* var high =  $(this).find('.c_highlight').data('attr');
+
     if(high){
       // console.log(high);
-       highlighter.deserialize(high);
-    }
+       // highlighter.deserialize(high);
+    }*/
 });
 
-     
+
 
 
       $( ".commentdot" ).each(function( index ) {
@@ -494,11 +520,13 @@ document.getElementById("viewer").addEventListener('mouseup', comment, false);
 
       $('#marks').mouseover(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
+        // $(this).find('p').css("color","#ffeb32");
       });
 
 
       $('#marks').mouseout(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
+        // $(this).find('p').css("color","black");
       });
 
       $('#print').mouseover(function(){
@@ -510,11 +538,7 @@ document.getElementById("viewer").addEventListener('mouseup', comment, false);
       });
 
 
-var oldsel = [];
-oldsel .push({start: 10, end: 80});
-
-
-
+/*
 var myFunction = function() {
 
   var page = "page" + $('#pageNumber').val() ;
@@ -525,20 +549,19 @@ var myFunction = function() {
     if(newsel[0].end - newsel[0].start > 0){
     $('#new_post_highlight').val(newsel );*/
 
-
-      serial = highlighter.serialize()
+    /*  serial = highlighter.serialize()
       console.log("serial");
      $('#new_post_highlight').val(serial );
 
- 
-    };
-//}
-    var classname = document.getElementsByClassName("textLayer");
+
+    };*/
+//}*/
+  /*  var classname = document.getElementsByClassName("textLayer");
 
       for (var i = 0; i < classname.length; i++) {
         classname[i].addEventListener('mouseup', myFunction, false);
       }
-
+*/
 
 $('input#decline').click(function(){
   $('#respond').css({
@@ -552,28 +575,80 @@ $('#sidebarToggle').click(function(){
   $('#sidebarContent').toggleClass('hidden');
 });
 
-$('#aboutPage').toggleClass('hidden');
-$('div.about').click(function(){
-
-  $('#aboutPage').toggleClass('hidden');
-});
-
-$('div.aboutclose').click(function(){
-  $('#aboutPage').toggleClass('hidden');
-});
+// $('#aboutPage').toggleClass('show');
+// $('div.about').click(function(){
+//   console.log('check');
+//   $('#aboutPage').toggleClass('show');
+// });
+//
+// $('div.aboutclose').click(function(){
+//   $('#aboutPage').toggleClass('show');
+// });
 
 
       $('#marks').click(function(){
         $('.commentdot').toggleClass('hidden');
         $(this).find('.dot').toggleClass('fillm');
         if ($(this).find('.dot').hasClass('fillm')) {
-          $(this).find('p').html("HIDE MARKS");
+          $(this).find('p').css("color","#ffeb32");
         } else {
-          $(this).find('p').html("SHOW MARKS");
+          $(this).find('p').css("color","black");
           $(".comment_positioned").each(function(){
             if(!$(this).hasClass('hidden')){
               $(this).toggleClass('hidden')
             }
+          });
+        }
+      });
+
+      $('#play').click(function() {
+        if ($('#play').hasClass('pause')) {
+          $('#audio').trigger('pause')
+        } else {
+          $('#audio').trigger('play')
+        }
+      });
+
+      $('#play').click(function(){
+        $('#play').toggleClass('pause');
+        // $(this).find('.dot').toggleClass('fillm');
+        if ($(this).hasClass('pause')) {
+          $(this).find('.play').html("❘ ❘");
+          $(this).find('.play').css({
+            verticalAlign: 'middle',
+            color: '#00aa00',
+          });
+          $(this).find('p').html('PAUSE AUDIOFILE');
+          $(this).find('p').css({
+            color: '#00aa00',
+          });
+        } else {
+          $(this).find('.play').html("▷");
+          $(this).find('.play').css({
+            verticalAlign: 'top',
+            color: 'black',
+          });
+          $(this).find('p').html('PLAY AUDIOFILE');
+          $(this).find('p').css({
+            color: 'black',
+          });
+        }
+      });
+
+      $('#play').mouseover(function(){
+        $(this).find('.play').css({
+          color: '#00aa00',
+        });
+      });
+
+      $('#play').mouseout(function(){
+        if ($(this).hasClass('pause')) {
+          $(this).find('.play').css({
+            color: '#00aa00',
+          });
+        } else {
+          $(this).find('.play').css({
+            color: 'black',
           });
         }
       });
@@ -586,19 +661,19 @@ $('div.aboutclose').click(function(){
 
       $('#sidebarContent').toggleClass('hidden');
 
-      $('#sidebarToggle').click(function(){
-        $('.arrow_left').toggleClass('arrow_switch');
-        $('#sidebarContent').toggleClass('hidden');
-      });
+      // $('#sidebarToggle').click(function(){
+      //   $('.arrow_left').toggleClass('arrow_switch');
+      //   $('#sidebarContent').toggleClass('hidden');
+      // });
 
-      $('#aboutPage').toggleClass('hidden');
+      // $('#aboutPage').toggleClass('hidden');
 
       $('div.about').click(function(){
-        $('#aboutPage').toggleClass('hidden');
+        $('#aboutPage').toggleClass('showabout');
       });
 
       $('div.aboutclose').click(function(){
-        $('#aboutPage').toggleClass('hidden');
+        $('#aboutPage').toggleClass('showabout');
       });
 
     //}
@@ -641,6 +716,7 @@ $('div.aboutclose').click(function(){
       };
     }
 
+    $('#startScreen').fadeOut(300);
 
 }
 
@@ -649,3 +725,4 @@ $('div.aboutclose').click(function(){
 });
 
 </script>
+
