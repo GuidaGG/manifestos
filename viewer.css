@@ -413,7 +413,7 @@ select {
   top: 0;
   bottom: 0;
   width: 200px;
-  visibility: hidden;
+  /* visibility: hidden; */
   -webkit-transition-duration: 200ms;
   -webkit-transition-timing-function: ease;
   transition-duration: 200ms;

@@ -238,7 +238,7 @@
                   <div class="marktool"></div><p>COMMENT</p>
                 </button> -->
 
-                <button id="marks" class="toolbarButton marks hiddenMediumView">
+                <button id="marks" class="toolbarButton marks hiddenMediumView ">
                   <div class="dot"></div><p>COMMENT</p>
                 </button>
 
@@ -450,7 +450,7 @@ jQuery(document).ready(function($) {
 
 
 
-   
+
     $count = 0;
 
 
@@ -526,8 +526,11 @@ $( ".comment_positioned" ).each(function( index ) {
         }
       });
 
-
-document.getElementById("viewer").addEventListener('mouseup', comment, false);
+      $('.textLayer').click(function(e){
+        if($('#marks').find('.dot').hasClass('fillm')){
+          comment(e);
+        }
+      });
 
       $('#marks').mouseover(function(){
         $(this).find('.dot').toggleClass('hoverstatem');
@@ -596,6 +599,9 @@ $('#sidebarToggle').click(function(){
 //   $('#aboutPage').toggleClass('show');
 // });
 
+$('#marks').find('.dot').toggleClass('fillm');
+$('.commentdot').toggleClass('hidden');
+$('#marks').find('p').css("color","#ffeb32");
 
       $('#marks').click(function(){
         $('.commentdot').toggleClass('hidden');
@@ -604,6 +610,9 @@ $('#sidebarToggle').click(function(){
           $(this).find('p').css("color","#ffeb32");
         } else {
           $(this).find('p').css("color","black");
+          $('#respond').css({
+            left: '-9999px',
+          });
           $(".comment_positioned").each(function(){
             if(!$(this).hasClass('hidden')){
               $(this).toggleClass('hidden')
